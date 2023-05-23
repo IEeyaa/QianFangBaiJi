@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">穷经</string>
+    <string name="action_settings">test</string>
+
+    <string name="open_up">穷经</string>
+    <string name="open_down">欢迎来到《穷经》</string>
+
+    <string name="cut">已过条文</string>
+    <string name="re">恢复</string>
+    <string name="collection">收藏</string>
+    <string name="delete">取消收藏</string>
+    <string name="check">关键词检索</string>
+    <string name="fanye">翻页模式</string>
+
+    <string name="back">返回</string>
+
+    <string name="select">选择模式</string>
+    <string name="select_book">选择书本</string>
+
+    <string name="book1">黄帝内经</string>
+    <string name="book2">金匮要略</string>
+    <string name="book3">伤寒</string>
+    <string name="book4">温病学</string>
+
+</resources>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/topBar"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/back"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/cardNumber"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_width="250dp"
+            android:textSize="25sp"
+            android:hint="@string/cardHint"
+            android:textStyle="bold"
+            />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:rotation="90"
+            android:layout_toRightOf="@id/cardNumber"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/editCard"
+            android:alpha="0.5"
+            android:background="@drawable/edit"
+            android:layout_toEndOf="@id/cardNumber"
+            android:layout_marginStart="20dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"  />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below = "@+id/topBar"
+        android:layout_above="@id/downBar"
+        android:background="@drawable/guodu"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/title"
+            android:text="这是标题"
+            android:textSize="25sp"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginTop = "10dp"
+            android:id="@+id/hintLine1"
+            android:layout_height="5dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/hint1"
+            android:text="这是提示1"
+            android:textSize="20sp"
+            android:textColor = "@color/grey"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginTop = "10dp"
+            android:id="@+id/hintLine2"
+            android:layout_height="5dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/hint2"
+            android:text="这是提示2"
+            android:textSize="20sp"
+            android:textColor = "@color/grey"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginTop = "10dp"
+            android:id="@+id/hintLine3"
+            android:layout_height="5dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/hint3"
+            android:text="这是提示3"
+            android:textSize="20sp"
+            android:textColor = "@color/grey"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginTop = "10dp"
+            android:id="@+id/hintLine4"
+            android:layout_height="5dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/hint4"
+            android:text="这是提示4"
+            android:textSize="20sp"
+            android:textColor = "@color/grey"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/downBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text = "显示内容"
+            android:textStyle="bold"
+            android:textColor="@color/co_1"
+            android:textSize="20sp"
+            android:onClick="hintToNext"
+            android:id="@+id/toNext"
+            />
+        <Button
+            android:id="@+id/toLeft"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/toNext"
+            android:layout_marginRight="80dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/left"
+            android:layout_toStartOf="@+id/toNext"
+            android:layout_marginEnd="80dp" />
+        <Button
+            android:id="@+id/toRight"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/toNext"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:background="@drawable/right"
+            android:layout_toEndOf="@+id/toNext"
+            android:layout_marginStart="80dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

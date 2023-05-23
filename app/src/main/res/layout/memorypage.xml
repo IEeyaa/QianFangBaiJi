@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/guodu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/topNav"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/back"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:id="@+id/now_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="当前进度:1/20"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/co_2"
+            android:layout_marginEnd="50dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_below="@+id/topNav"
+        android:id="@+id/topLine"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"  />
+
+    <!--        方歌主要部分-->
+    <LinearLayout
+        android:layout_below="@+id/topLine"
+        android:background="@drawable/circlerect2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50sp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/grey"
+            android:id="@+id/fangge_id"
+            android:text="方歌：104"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:background="@drawable/circlerect"
+            android:layout_width="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:id="@+id/fangge_name"
+            android:text="麻黄汤"
+            android:textSize="25sp" />
+
+        <TextView
+            android:background="@drawable/circlerect2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:id="@+id/fangge_from"
+            android:text="汉·伤寒论"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:id="@+id/fangge_content"
+            android:lineSpacingExtra="20dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="桑菊饮中桔杏翘，芦根甘草薄荷饶；\n清疏肺卫轻宣剂，风温咳嗽服之消。"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:text="功效：辛温解表"
+            android:id="@+id/fangge_infor"
+            android:textSize="15sp"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/bottomNav"
+        android:id="@+id/third"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"  />
+        <Button
+            android:id="@+id/star3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/collec"
+            />
+        <Button
+            android:id="@+id/star2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/star3"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/collec"
+            android:layout_toStartOf="@+id/star3"
+            android:layout_marginEnd="10dp" />
+        <Button
+            android:id="@+id/star1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/star2"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/collec"
+            android:layout_toStartOf="@+id/star2"
+            android:layout_marginEnd="10dp" />
+        <Button
+            android:id="@+id/star4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/star3"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/collec"
+            android:layout_toEndOf="@+id/star3"
+            android:layout_marginStart="10dp" />
+        <Button
+            android:id="@+id/star5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/star4"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/collec"
+            android:layout_toEndOf="@+id/star4"
+            android:layout_marginStart="10dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottomNav"
+        android:background="@color/co_1"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"  />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/delete"
+            android:id="@+id/btn_starClear"
+            />
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/btn_starClear"
+            android:layout_marginRight="100dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/left"
+            android:layout_toStartOf="@+id/btn_starClear"
+            android:layout_marginEnd="100dp" />
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/btn_starClear"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/right"
+            android:layout_toEndOf="@+id/btn_starClear"
+            android:layout_marginStart="100dp" />
+        <TextView
+            android:id="@+id/memory_submit"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/btn_starClear"
+            android:text="@string/memorySubmit"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:textSize="25sp"
+            android:textColor="@color/grey2"
+            android:gravity="center"
+            android:layout_toEndOf="@+id/btn_starClear"
+            android:layout_marginStart="50dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

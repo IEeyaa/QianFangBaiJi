@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:id="@+id/fangge_item"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:text="123"
+            android:id="@+id/fangge_id"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            >
+            <TextView
+                android:text="123"
+                android:layout_width="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/grey2"
+                android:id="@+id/fangge_infor"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+            <TextView
+                android:text="桂枝芍药等量伍…"
+                android:layout_width="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/grey"
+                android:id="@+id/fangge_content"
+                android:textSize="15sp"
+ />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <Button
+                android:layout_marginLeft="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/btn_delete"
+                android:background="@drawable/delete"
+                android:layout_marginStart="10dp" />
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/collec"
+                android:id="@+id/btn_collect"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:text="q"
+            android:layout_gravity="left"
+            android:textColor="@color/grey2"
+            android:id="@+id/q"
+            android:textSize="15sp"
+            android:layout_marginStart="20dp"
+            tools:ignore="RtlHardcoded" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:text="day"
+            android:textColor="@color/grey2"
+            android:id="@+id/day"
+            android:textSize="15sp"
+            android:layout_marginStart="20dp" />
+    </LinearLayout>
+</LinearLayout>

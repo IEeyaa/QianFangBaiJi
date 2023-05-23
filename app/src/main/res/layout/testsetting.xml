@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    android:background="@drawable/guodu"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/topNav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/back"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:id="@+id/test"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/testSetting"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="@color/co_1"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"  />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/secondNav"
+        android:layout_below="@+id/topNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/circlerect2"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey2"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/selectMemoryNumber"
+
+            android:textSize="15sp"
+            />
+        <EditText
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:hint="10"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey"
+            android:id="@+id/Edit"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circlerect"
+        android:text="@string/testStart"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:id="@+id/btn_start"
+        android:layout_above="@+id/bottomLine"
+        />
+
+    <View
+        android:layout_marginTop="50dp"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_above="@id/bottomNav"
+        android:id="@+id/bottomLine"
+        />
+
+    <TextView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/start_hint"
+
+        android:textColor="@color/grey"
+        android:textSize="20sp" />
+
+</RelativeLayout>

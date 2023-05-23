@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">千方百剂</string>
+
+    <string name="start">千方百剂</string>
+    <string name="start_hint">欢迎来到《千方百剂》</string>
+
+    <string name="cut">已过方歌</string>
+    <string name="restore">重新记忆</string>
+    <string name="collection">收藏</string>
+    <string name="delete">取消收藏</string>
+    <string name="check">关键词检索</string>
+    <string name="page">翻页模式</string>
+
+    <string name="daily_line">------节选内容------</string>
+    <string name="daily_read">每日一读</string>
+    <string name="start_study">开始学习</string>
+    <string name="back">返回</string>
+    <string name="memory_card">记忆卡片</string>
+    <string name="select">选择模式</string>
+    <string name="readMode">阅读模式</string>
+    <string name="memoryMode">测试模式</string>
+    <string name="collectMode">我的收藏</string>
+    <string name="deleteMode">已过条文</string>
+    <string name="myTest">自我评估</string>
+    <string name="fangge_hint">输入方歌序号</string>
+    <string name="fangge_searchWord_hint">输入关键词</string>
+    <string name="memoryReport">报告结果</string>
+    <string name="memoryHint">------方歌背诵数------</string>
+    <string name="memorySetting">方歌自评</string>
+    <string name="memoryLoad">方歌查看</string>
+    <string name="selectMemoryNumber">------选择记忆数目------</string>
+    <string name="memoryStart">开始自评</string>
+    <string name="memorySubmit">提交</string>
+    <string name="memoryLoads">已学方歌</string>
+    <string name="cardHint">当前卡片</string>
+    <string name="cardListHint">输入标题</string>
+    <string name="cardCreate">新建卡片</string>
+    <string name="cardEdit">卡片编辑</string>
+    <string name="cardTitleHint">输入卡片标题</string>
+    <string name="cardSubmit">提交卡片</string>
+    <string name="testSetting">方歌测试</string>
+    <string name="testStart">开始测试</string>
+</resources>

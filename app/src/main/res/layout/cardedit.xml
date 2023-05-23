@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/back"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/cardNumber"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_width="250dp"
+            android:textSize="25sp"
+            android:hint="@string/cardEdit"
+            android:textStyle="bold"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"  />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="@drawable/guodu"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="500dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="题目："
+            android:textSize="20sp"
+            android:layout_marginStart="20dp" />
+        <EditText
+            android:id="@+id/title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardTitleHint"
+            android:inputType="textMultiLine" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="内容1"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp" />
+        <EditText
+            android:id="@+id/hint1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入内容1"
+            android:inputType="textMultiLine" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="内容2："
+            android:textSize="20sp"
+            android:layout_marginStart="20dp" />
+        <EditText
+            android:id="@+id/hint2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入内容2"
+            android:inputType="textMultiLine" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="内容3："
+            android:textSize="20sp"
+            />
+        <EditText
+            android:id="@+id/hint3"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入内容3"
+            android:inputType="textMultiLine" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="内容4："
+            android:textSize="20sp"
+            android:layout_marginStart="20dp" />
+        <EditText
+            android:id="@+id/hint4"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入内容4"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text = "@string/cardSubmit"
+            android:textStyle="bold"
+            android:textColor="@color/co_1"
+            android:textSize="20sp"
+            android:id="@+id/cardReady"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

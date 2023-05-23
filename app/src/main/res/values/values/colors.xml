@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/blue_1</color>
+    <color name="colorPrimaryDark">@color/blue_1</color>
+    <color name="colorAccent">@color/blue_5</color>
+
+    <color name="blue_1">#00101f</color>
+    <color name="blue_5">#0078ff</color>
+
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF00</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="tianyi">#FF66CCFF</color>
+    <color name="grey">#FF8F8B8B</color>>
+    <color name="grey2">#FF7A7A7A</color>>
+
+    <color name="co_0">#FF1F5F61</color>
+    <color name="co_1">#FFADA6C4</color>
+    <color name="co_2">#FFBBA491</color>
+    <color name="co_3">#FFF9D5A8</color>
+    <color name="co_4">#FFEBE8E5</color>
+
+    <color name="co_5">#FFE2D3CD</color>
+    <color name="co_6">#FFE3DAD5</color>
+    <color name="co_7">#FFD6CDB5</color>
+    <color name="co_8">#FFF7D8B5</color>
+    <color name="co_9">#FFD0C8B6</color>
+    <color name="co_10">#80BBA491</color>
+    <color name="co_11">#80ADA6C4</color>
+
+
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/topBar"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/back"
+            android:layout_marginStart="10dp" />
+        <EditText
+            android:layout_height="wrap_content"
+            android:id="@+id/cardName"
+            android:layout_centerInParent="true"
+            android:layout_width="250dp"
+            android:hint="@string/cardListHint"
+            android:textColorHint="#95A1AA"
+            />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:rotation="90"
+            android:layout_toRightOf="@id/cardName"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/search"
+            android:alpha="0.5"
+            android:onClick="search"
+            android:background="@drawable/search1"
+            android:layout_toEndOf="@id/cardName"
+            android:layout_marginStart="5dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"  />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:background="@drawable/guodu"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/topBar"
+        android:layout_above="@+id/downBar"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/card_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/downBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"  />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text = "@string/cardCreate"
+            android:textStyle="bold"
+            android:textColor="@color/co_1"
+            android:textSize="20sp"
+            android:id="@+id/cardCreate"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
