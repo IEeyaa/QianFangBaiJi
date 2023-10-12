@@ -11,3 +11,7 @@
 - 每日测试：使用Anki + 百词斩的模式对方歌进行综合考察
 - 卡片模式：允许用户自定义卡片进行管理
 
+安卓端测试链接：
+链接：https://pan.baidu.com/s/1dAATlkBbc3FvdXK-ITvjBw?pwd=1145 
+提取码：1145
+
