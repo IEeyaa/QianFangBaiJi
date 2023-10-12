@@ -15,22 +15,36 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/back"
             android:layout_marginStart="10dp" />
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="40dp"
-            android:gravity="center"
-            android:id="@+id/now_number"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="当前进度:1/20"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:textColor="@color/co_2"
-            android:layout_marginEnd="50dp" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/now_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需新学 2"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/co_2" />
+            <TextView
+                android:id="@+id/pre_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需复习 2"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/co_1" />
+        </LinearLayout>
     </LinearLayout>
+
 
     <View
         android:layout_below="@+id/topNav"
@@ -117,64 +131,70 @@
 
     </LinearLayout>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="120dp"
         android:layout_above="@+id/bottomNav"
         android:id="@+id/third"
         android:orientation="horizontal">
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"  />
-        <Button
-            android:id="@+id/star3"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/collec"
-            />
-        <Button
-            android:id="@+id/star2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toLeftOf="@+id/star3"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/collec"
-            android:layout_toStartOf="@+id/star3"
-            android:layout_marginEnd="10dp" />
-        <Button
-            android:id="@+id/star1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toLeftOf="@+id/star2"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/collec"
-            android:layout_toStartOf="@+id/star2"
-            android:layout_marginEnd="10dp" />
-        <Button
-            android:id="@+id/star4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@+id/star3"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/collec"
-            android:layout_toEndOf="@+id/star3"
-            android:layout_marginStart="10dp" />
-        <Button
-            android:id="@+id/star5"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@+id/star4"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/collec"
-            android:layout_toEndOf="@+id/star4"
-            android:layout_marginStart="10dp" />
+            android:id="@+id/centerAll"
+            >
+        </TextView>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="2">
+            <Button
+                android:id="@+id/star1"
+                android:gravity="center"
+                android:background="@drawable/button1"
+                android:layout_gravity="fill"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="并不熟悉"/>
+            <Button
+                android:id="@+id/star2"
+                android:gravity="center"
+                android:background="@drawable/button2"
+                android:layout_gravity="fill"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="略有困难"/>
+            <Button
+                android:id="@+id/star3"
+                android:gravity="center"
+                android:background="@drawable/button3"
+                android:layout_gravity="fill"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="正常了解"/>
+
+            <Button
+                android:id="@+id/star4"
+                android:layout_gravity="fill"
+                android:background="@drawable/button4"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="熟练掌握" />
+        </GridLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -189,10 +209,9 @@
             android:layout_height="2dp"
             android:background="@android:color/darker_gray"  />
         <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/delete"
             android:id="@+id/btn_starClear"
             />
         <Button

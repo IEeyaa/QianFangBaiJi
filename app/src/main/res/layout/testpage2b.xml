@@ -63,7 +63,6 @@
         >
         <LinearLayout
             android:layout_centerVertical="true"
-            android:background="@drawable/circlerect2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -81,51 +80,21 @@
                 android:textColor="@color/black"
                 android:id="@+id/fangge_name"
                 android:text="麻黄汤"
-                android:textSize="25sp" />
+                android:textSize="30dp" />
 
             <TextView
-                android:background="@drawable/circlerect2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:id="@+id/fangge_from"
                 android:text="汉·伤寒论"
+                android:textStyle="italic|bold"
                 android:textSize="20sp"
                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"
-                android:id="@+id/fangge_content"
-                android:lineSpacingExtra="20dp"
-                android:lineSpacingMultiplier="1.2"
-                android:text="蚖斑水蛭及虻虫，乌头附子配天雄；\n
-野葛水银并巴豆，牛膝薏苡与蜈蚣；"
-                android:textSize="16sp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:gravity="right"
-                android:layout_gravity="right"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:text="功效：辛温解表"
-                android:id="@+id/fangge_infor"
-                android:textSize="15sp"
-                tools:ignore="RtlHardcoded" />
-
         </LinearLayout>
     </RelativeLayout>
 
@@ -143,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="可以填入上面空缺处的是?"
+            android:text="属于该药方的方歌句子为?"
             android:textColor="@color/grey2"
             android:textSize="18dp"
             android:layout_marginBottom="10dp"

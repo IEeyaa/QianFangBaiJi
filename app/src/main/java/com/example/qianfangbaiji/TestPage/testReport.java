@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 import com.example.qianfangbaiji.StudyPage.MyAdapterForList;
 import com.example.qianfangbaiji.StudyPage.readPage;
@@ -83,7 +84,7 @@ public class testReport extends AppCompatActivity {
 
     private void initView() {
         ListView listView = findViewById(R.id.fangge_list);
-        MyAdapterForMemoryList myAdapter = new MyAdapterForMemoryList(list, this, db1, "memory");
+        MyAdapterForMemoryList myAdapter = new MyAdapterForMemoryList(list, this, "memory");
         listView.setAdapter(myAdapter);
     }
 }
@@ -92,8 +93,8 @@ public class testReport extends AppCompatActivity {
 class MyAdapterForMemoryList extends MyAdapterForList {
     TextView q, day;
 
-    MyAdapterForMemoryList(List<Fangge> list, AppCompatActivity myList, SQLiteDatabase db1, String from) {
-        super(list, myList, db1, from);
+    MyAdapterForMemoryList(List<Fangge> list, AppCompatActivity myList, String from) {
+        super(list, myList, from);
     }
 
     @SuppressLint({"ViewHolder", "SetTextI18n"})
@@ -134,13 +135,13 @@ class MyAdapterForMemoryList extends MyAdapterForList {
                 if(has_collect) {
                     v.setBackgroundResource(R.drawable.collec);
                     sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                    db1.execSQL(sql);
+                    MySQLHelper.getInstance().sqlOther(sql);
                     Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     v.setBackgroundResource(R.drawable.collec2);
                     sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                    db1.execSQL(sql);
+                    MySQLHelper.getInstance().sqlOther(sql);
                     Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
                 }
                 has_collect = !has_collect;
@@ -179,7 +180,7 @@ class MyAdapterForMemoryList extends MyAdapterForList {
                 int fangge_number = list.get(position).id;
                 @SuppressLint("DefaultLocale")
                 String sql = String.format("update fangge set iscut = 1 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(context, "方歌删除成功", Toast.LENGTH_SHORT).show();
                 list.remove(position);
                 notifyDataSetChanged();

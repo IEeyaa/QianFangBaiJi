@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 
 import java.util.ArrayList;
@@ -31,12 +32,11 @@ public class collectList extends AppCompatActivity {
     List<Fangge> list = new ArrayList<>();
     Button btn_back, btn_search;
     EditText Edit;
-    SQLiteDatabase db1;
     Cursor c;
 
     private void initView() {
         ListView listView = findViewById(R.id.fangge_list);
-        MyAdapterForCollectList myAdapter = new MyAdapterForCollectList(list, this,  db1, "collect");
+        MyAdapterForCollectList myAdapter = new MyAdapterForCollectList(list, this, "collect");
         listView.setAdapter(myAdapter);
     }
 
@@ -60,8 +60,8 @@ public class collectList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = Edit.getText().toString();
-                c = db1.rawQuery(String.format("SELECT * FROM fangge WHERE (infor LIKE '%%%s%%' " +
-                        "or content LIKE '%%%s%%') and iscollect = 1", str, str), null);
+                c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE (infor LIKE '%%%s%%' " +
+                                "or content LIKE '%%%s%%') and iscollect = 1", str, str));
                 c.moveToFirst();
                 list.clear();
                 while (!c.isAfterLast()) {
@@ -72,10 +72,8 @@ public class collectList extends AppCompatActivity {
                 initView();
             }
         });
-        db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
 
-
-        c = db1.rawQuery("SELECT * FROM fangge WHERE iscollect = 1", null);
+        c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE iscollect = 1");
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
@@ -88,8 +86,8 @@ public class collectList extends AppCompatActivity {
 }
 
 class MyAdapterForCollectList extends MyAdapterForList {
-    MyAdapterForCollectList(List<Fangge> list, AppCompatActivity myList, SQLiteDatabase db1, String from) {
-        super(list, myList, db1, from);
+    MyAdapterForCollectList(List<Fangge> list, AppCompatActivity myList, String from) {
+        super(list, myList, from);
     }
     @SuppressLint({"ViewHolder", "SetTextI18n"})
     @Override
@@ -142,7 +140,7 @@ class MyAdapterForCollectList extends MyAdapterForList {
                 int fangge_number = list.get(position).id;
                 @SuppressLint("DefaultLocale")
                 String sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(context, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
                 list.remove(position);
                 notifyDataSetChanged();

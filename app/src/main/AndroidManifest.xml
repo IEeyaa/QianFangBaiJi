@@ -27,12 +27,15 @@
         <activity android:name=".MemoryPage.memoryStart" />
         <activity android:name=".MemoryPage.memoryReport" />
         <activity android:name=".MemoryPage.memoryLoad" />
+        <activity android:name=".MemoryPage.testPage" />
+        <activity android:name=".MemoryPage.testPage2B" />
         <activity android:name=".CardPage.MemoryCardList" />
         <activity android:name=".CardPage.MemoryCardLoad" />
         <activity android:name=".CardPage.MemoryCardCreate" />
         <activity android:name=".TestPage.testPage" />
         <activity android:name=".TestPage.testStart" />
         <activity android:name=".TestPage.testReport" />
+        <activity android:name=".MemoryPage.memorySelect" />
     </application>
 
 </manifest>

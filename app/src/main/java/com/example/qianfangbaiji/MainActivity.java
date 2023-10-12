@@ -2,7 +2,6 @@ package com.example.qianfangbaiji;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -12,9 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.DailyPage.daily;
-import com.example.qianfangbaiji.OtherClass.MyDBOpenHelper;
-
-import java.io.IOException;
+import com.example.qianfangbaiji.OtherClass.Global;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 
 public class MainActivity extends AppCompatActivity {
     private TextView txt;
@@ -22,31 +20,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //关联到首页Activity_main，并获取其中的《穷经》text1
-        setContentView(R.layout.activity_main);
-        txt = findViewById(R.id.text1);
-        //动画设计，字体逐渐向上展现
+        // 动画设计，字体逐渐向上展现
         AnimationSet animationSet=new AnimationSet(true);
         AlphaAnimation alphaAction = new AlphaAnimation(0, 1);
-        //动画效果，Alpha从0到1的变化
+        // 动画效果，Alpha从0到1的变化
         alphaAction.setDuration(2000);
         alphaAction.setFillAfter(true);
 
-        MyDBOpenHelper db;
+        MySQLHelper.getInstance().createDB(this);
 
-
-//        打开数据库，如果没有则复制
-        db = new MyDBOpenHelper(this);
-        try {
-            db.openDB();
-        } catch (SQLException sqle) {
-            try {
-                db.createDB();
-            } catch (IOException ioe) {
-                throw new Error("Database not created....");
-            }
-        }
-        db.close();
+        setContentView(R.layout.activity_main);
+        txt = findViewById(R.id.text1);
 
         animationSet.addAnimation(alphaAction);
         txt.startAnimation(animationSet);

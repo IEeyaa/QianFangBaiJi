@@ -14,6 +14,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 
 import java.util.ArrayList;
@@ -26,12 +27,11 @@ public class readList extends AppCompatActivity {
     List<Fangge> list = new ArrayList<>();
     Button btn_back, btn_search;
     EditText Edit;
-    SQLiteDatabase db1;
     Cursor c;
 
     private void initView() {
         ListView listView = findViewById(R.id.fangge_list);
-        MyAdapterForList myAdapter = new MyAdapterForList(list, this, db1, "read");
+        MyAdapterForList myAdapter = new MyAdapterForList(list, this,"read");
         listView.setAdapter(myAdapter);
     }
 
@@ -52,14 +52,12 @@ public class readList extends AppCompatActivity {
         });
 
 
-        db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = Edit.getText().toString();
-                c = db1.rawQuery(String.format("SELECT * FROM fangge WHERE infor LIKE '%%%s%%' " +
-                        "or content LIKE '%%%s%%'", str, str), null);
+                c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE infor LIKE '%%%s%%' " +
+                        "or content LIKE '%%%s%%'", str, str));
                 c.moveToFirst();
                 list.clear();
                 while (!c.isAfterLast()) {
@@ -71,7 +69,7 @@ public class readList extends AppCompatActivity {
             }
         });
 
-        c = db1.rawQuery("SELECT * FROM fangge WHERE iscut = 0", null);
+        c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE iscut = 0");
         c.moveToFirst();
 
         while (!c.isAfterLast()) {

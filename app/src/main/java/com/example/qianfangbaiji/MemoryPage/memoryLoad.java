@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 import com.example.qianfangbaiji.StudyPage.MyAdapterForList;
 import com.example.qianfangbaiji.StudyPage.readPage;
@@ -30,9 +31,7 @@ import java.util.List;
 //根据数据库创建
 public class memoryLoad extends AppCompatActivity {
     Button btn_back;
-    int max;
     List<Fangge> list = new ArrayList<>();
-    SQLiteDatabase db1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +49,7 @@ public class memoryLoad extends AppCompatActivity {
             }
         });
 
-        db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-        Cursor c = db1.rawQuery("SELECT * FROM fangge WHERE ispassed = 2", null);
+        Cursor c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE ispassed = 2");
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
@@ -63,7 +61,7 @@ public class memoryLoad extends AppCompatActivity {
 
     private void initView() {
         ListView listView = findViewById(R.id.fangge_list);
-        MyAdapterForLoadList myAdapter = new MyAdapterForLoadList(list, this, db1, "load");
+        MyAdapterForLoadList myAdapter = new MyAdapterForLoadList(list, this, "load");
         listView.setAdapter(myAdapter);
     }
 }
@@ -72,8 +70,8 @@ public class memoryLoad extends AppCompatActivity {
 class MyAdapterForLoadList extends MyAdapterForList {
     TextView q, day;
 
-    MyAdapterForLoadList(List<Fangge> list, AppCompatActivity myList, SQLiteDatabase db1, String from) {
-        super(list, myList, db1, from);
+    MyAdapterForLoadList(List<Fangge> list, AppCompatActivity myList, String from) {
+        super(list, myList, from);
     }
 
     @SuppressLint({"ViewHolder", "SetTextI18n"})
@@ -113,13 +111,13 @@ class MyAdapterForLoadList extends MyAdapterForList {
                 if(has_collect) {
                     v.setBackgroundResource(R.drawable.collec);
                     sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                    db1.execSQL(sql);
+                    MySQLHelper.getInstance().sqlOther(sql);
                     Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     v.setBackgroundResource(R.drawable.collec2);
                     sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                    db1.execSQL(sql);
+                    MySQLHelper.getInstance().sqlOther(sql);
                     Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
                 }
                 has_collect = !has_collect;

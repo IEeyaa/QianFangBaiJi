@@ -30,5 +30,10 @@
     <color name="co_10">#80BBA491</color>
     <color name="co_11">#80ADA6C4</color>
 
+    <color name="my_orange">#FFA07A</color>
+    <color name="my_red">#FFA07A</color>
+    <color name="my_green">#FFA07A</color>
+    <color name="my_blue">#FFA07A</color>
+
 
 </resources>

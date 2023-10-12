@@ -16,7 +16,6 @@ import com.example.qianfangbaiji.CardPage.MemoryCardList;
 import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.R;
 import com.example.qianfangbaiji.StudyPage.selectmode;
-import com.example.qianfangbaiji.TestPage.testPage;
 
 //主页，其中包含“每日一句”、“测试”、“学习”三个板块的接口
 public class daily extends AppCompatActivity {
@@ -69,8 +68,8 @@ public class daily extends AppCompatActivity {
         //      结果提取
         Fangge fangge_item = new Fangge(c);
         //        展示
-        fangge_from.setText(String.format("方歌来源：%s·%s", fangge_item.dynasty, fangge_item.book));
+        fangge_from.setText(String.format("——方歌来源：%s·%s", fangge_item.dynasty, fangge_item.book));
         fangge_content.setText(fangge_item.content);
-        fangge_infor.setText(String.format("——%s·%s",fangge_item.table_name,fangge_item.infor));
+        fangge_infor.setText(String.format("%s·%s",fangge_item.table_name,fangge_item.infor));
     }
 }

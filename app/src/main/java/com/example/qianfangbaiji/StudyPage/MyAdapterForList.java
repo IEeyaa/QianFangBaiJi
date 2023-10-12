@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 
 import java.util.List;
@@ -35,10 +36,9 @@ public class MyAdapterForList extends BaseAdapter {
     public String from;
     public boolean has_collect = false;
 
-    public MyAdapterForList(List<Fangge> list, AppCompatActivity myList, SQLiteDatabase db1, String from) {
+    public MyAdapterForList(List<Fangge> list, AppCompatActivity myList, String from) {
         this.list = list;
         this.myList = myList;
-        this.db1 = db1;
         this.from = from;
     }
 
@@ -98,13 +98,13 @@ public class MyAdapterForList extends BaseAdapter {
             if(has_collect) {
                 v.setBackgroundResource(R.drawable.collec);
                 sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
             }
             else{
                 v.setBackgroundResource(R.drawable.collec2);
                 sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
             }
             has_collect = !has_collect;
@@ -143,7 +143,7 @@ public class MyAdapterForList extends BaseAdapter {
                 int fangge_number = list.get(position).id;
                 @SuppressLint("DefaultLocale")
                 String sql = String.format("update fangge set iscut = 1 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(context, "方歌删除成功", Toast.LENGTH_SHORT).show();
                 list.remove(position);
                 notifyDataSetChanged();

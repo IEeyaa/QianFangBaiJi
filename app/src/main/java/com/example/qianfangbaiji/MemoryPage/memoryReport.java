@@ -20,6 +20,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.Global;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 import com.example.qianfangbaiji.StudyPage.MyAdapterForList;
 import com.example.qianfangbaiji.StudyPage.readPage;
@@ -34,21 +36,15 @@ public class memoryReport extends AppCompatActivity {
     int max;
     TextView fangge_number;
     List<Fangge> list = new ArrayList<>();
-    SQLiteDatabase db1;
-    @SuppressLint("SetTextI18n")
+    List<int[]> fangge_info;
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.memoryreport);
 
-        SharedPreferences prefs = getSharedPreferences("memory_prefs", MODE_PRIVATE);
-        max = prefs.getInt("number", -1);
-        int[] array = new int[max];
-        int[] q_array = new int[max];
-        for(int i=0; i<max; i++){
-            array[i] = prefs.getInt("array"+i, -1);
-            q_array[i] = prefs.getInt("array"+i, -1);
-        }
+        max = Global.number;
+        fangge_info = Global.fangge_info_array;
 
         btn_back = findViewById(R.id.btn_back);
 
@@ -64,8 +60,7 @@ public class memoryReport extends AppCompatActivity {
             }
         });
 
-        db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-        Cursor c = db1.rawQuery("SELECT * FROM fangge ", null);
+        Cursor c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge ");
         c.moveToFirst();
 
         int i=0;
@@ -75,12 +70,15 @@ public class memoryReport extends AppCompatActivity {
         while (!c.isAfterLast()) {
             // save into q_array
             //这一部分的条文，如果通过了ispassed设为2，反之设为1，同时更新EF，maxdate值，nowdate值恢复为0
-            if (i < max && c.getInt(c.getColumnIndex("id")) == array[i]) {
-                q = q_array[i];
+            if (i < max && c.getInt(c.getColumnIndex("id")) == fangge_info.get(i)[0]) {
+                q = fangge_info.get(i)[1];
                 maxdate = c.getInt(c.getColumnIndex("maxdate"));
                 times = c.getInt(c.getColumnIndex("times"));
                 EF = c.getInt(c.getColumnIndex("EF"));
-                if(q>=4) ispassed = 2;
+                if(q>=4){
+                    ispassed = 2;
+                    Global.already_over_number++;
+                }
                 else{
                     ispassed = 1;
                     times++;
@@ -91,9 +89,11 @@ public class memoryReport extends AppCompatActivity {
                         EF = EF+(0.1-(5-q)*(0.08+(5-q)*0.02));
                     }
                 }
-                list.add(new Fangge(c, q_array[i], maxdate));
-                sql = "update fangge set nowdate = 0, ispassed = " + ispassed + ", maxdate = " + maxdate+ ", times = " + times + ", EF = " + EF + " where id = " + array[i];
-                db1.execSQL(sql);
+                list.add(new Fangge(c, fangge_info.get(i)[1], maxdate));
+                sql = String.format("UPDATE fangge SET nowdate = 0, ispassed = %d, " +
+                                "maxdate = %d, times = %d, EF = %f WHERE id = %d",
+                        ispassed, maxdate, times, EF, fangge_info.get(i)[0]);
+                MySQLHelper.getInstance().sqlOther(sql);
                 i++;
             }
             //对于其它条文，如果已经遇到了并且这次没有学而且没有通过（即1类条文），加一天时间
@@ -103,18 +103,23 @@ public class memoryReport extends AppCompatActivity {
                 ispassed = c.getInt(c.getColumnIndex("ispassed"));
                 maxdate = c.getInt(c.getColumnIndex("maxdate"));
                 nowdate++;
-                if(nowdate == maxdate) ispassed = 3;
+                if(nowdate == maxdate){
+                    ispassed = 3;
+                    nowdate = 0;
+                }
                 sql = "update fangge set nowdate = "+ nowdate + ", ispassed = " + ispassed + " where id = " + t;
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
             }
             c.moveToNext();
         }
+        // 存储情况
+        Global.StoreInfo();
         initView();
     }
 
     private void initView() {
         ListView listView = findViewById(R.id.fangge_list);
-        MyAdapterForMemoryList myAdapter = new MyAdapterForMemoryList(list, this, db1, "memory");
+        MyAdapterForMemoryList myAdapter = new MyAdapterForMemoryList(list, this,"memory");
         listView.setAdapter(myAdapter);
     }
 }
@@ -123,8 +128,8 @@ public class memoryReport extends AppCompatActivity {
 class MyAdapterForMemoryList extends MyAdapterForList {
     TextView q, day;
 
-    MyAdapterForMemoryList(List<Fangge> list, AppCompatActivity myList, SQLiteDatabase db1, String from) {
-        super(list, myList, db1, from);
+    MyAdapterForMemoryList(List<Fangge> list, AppCompatActivity myList, String from) {
+        super(list, myList, from);
     }
 
     @SuppressLint({"ViewHolder", "SetTextI18n"})
@@ -139,11 +144,16 @@ class MyAdapterForMemoryList extends MyAdapterForList {
         final int fangge_number;
         fangge_number = fangge_item.id;
         fangge_id.setText(""+fangge_number);
-        fangge_infor.setText(fangge_item.infor);
+        if(fangge_item.infor.length() > 8){
+            fangge_infor.setText(fangge_item.infor.substring(0, 7) + "...");
+        }
+        else{
+            fangge_infor.setText(fangge_item.infor);
+        }
         fangge_content.setText(fangge_item.content.substring(0, 7) + "...");
 
         q.setText("分值：" + fangge_item.q);
-        if(fangge_item.day == 0) day.setText("通过!");
+        if(fangge_item.q >= 4) day.setText("通过!");
         else day.setText("下次间隔时间：" + fangge_item.day);
 
         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -166,13 +176,13 @@ class MyAdapterForMemoryList extends MyAdapterForList {
                 if(has_collect) {
                     v.setBackgroundResource(R.drawable.collec);
                     sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                    db1.execSQL(sql);
+                    MySQLHelper.getInstance().sqlOther(sql);
                     Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     v.setBackgroundResource(R.drawable.collec2);
                     sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                    db1.execSQL(sql);
+                    MySQLHelper.getInstance().sqlOther(sql);
                     Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
                 }
                 has_collect = !has_collect;
@@ -211,7 +221,7 @@ class MyAdapterForMemoryList extends MyAdapterForList {
                 int fangge_number = list.get(position).id;
                 @SuppressLint("DefaultLocale")
                 String sql = String.format("update fangge set iscut = 1 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(context, "方歌删除成功", Toast.LENGTH_SHORT).show();
                 list.remove(position);
                 notifyDataSetChanged();

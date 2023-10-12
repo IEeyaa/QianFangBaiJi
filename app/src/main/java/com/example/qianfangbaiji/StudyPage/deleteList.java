@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 
 import java.util.ArrayList;
@@ -31,12 +32,11 @@ public class deleteList extends AppCompatActivity {
     List<Fangge> list = new ArrayList<>();
     Button btn_back, btn_search;
     EditText Edit;
-    SQLiteDatabase db1;
     Cursor c;
 
     private void initView() {
         ListView listView = findViewById(R.id.fangge_list);
-        MyAdapterForDeleteList myAdapter = new MyAdapterForDeleteList(list, this,  db1, "delete");
+        MyAdapterForDeleteList myAdapter = new MyAdapterForDeleteList(list, this, "delete");
         listView.setAdapter(myAdapter);
     }
 
@@ -60,8 +60,8 @@ public class deleteList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = Edit.getText().toString();
-                c = db1.rawQuery(String.format("SELECT * FROM fangge WHERE (infor LIKE '%%%s%%' " +
-                        "or content LIKE '%%%s%%') and iscut = 1", str, str), null);
+                c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE (infor LIKE '%%%s%%' " +
+                        "or content LIKE '%%%s%%') and iscut = 1", str, str));
                 c.moveToFirst();
                 list.clear();
                 while (!c.isAfterLast()) {
@@ -73,10 +73,7 @@ public class deleteList extends AppCompatActivity {
             }
         });
 
-        db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-
-
-        c = db1.rawQuery("SELECT * FROM fangge WHERE iscut = 1", null);
+        c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE iscut = 1");
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
@@ -90,8 +87,8 @@ public class deleteList extends AppCompatActivity {
 
 //MyAdapter模块，调用相应按钮对应的文本并将其删除
 class MyAdapterForDeleteList extends MyAdapterForList {
-    MyAdapterForDeleteList(List<Fangge> list, AppCompatActivity myList, SQLiteDatabase db1, String from) {
-        super(list, myList, db1, from);
+    MyAdapterForDeleteList(List<Fangge> list, AppCompatActivity myList, String from) {
+        super(list, myList, from);
     }
     @SuppressLint({"ViewHolder", "SetTextI18n"})
     @Override
@@ -144,7 +141,7 @@ class MyAdapterForDeleteList extends MyAdapterForList {
                 int fangge_number = list.get(position).id;
                 @SuppressLint("DefaultLocale")
                 String sql = String.format("update fangge set iscut = 0 where id = %d", fangge_number);
-                db1.execSQL(sql);
+                MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(context, "方歌恢复成功", Toast.LENGTH_SHORT).show();
                 list.remove(position);
                 notifyDataSetChanged();

@@ -7,24 +7,16 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.ColorSpace;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.qianfangbaiji.MemoryPage.memoryReport;
-import com.example.qianfangbaiji.MemoryPage.memoryStart;
 import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
@@ -33,7 +25,7 @@ import com.example.qianfangbaiji.R;
 public class testPage extends AppCompatActivity {
     Button btn_back;
 
-    TextView fangge_id, fangge_name, fangge_infor, fangge_from, fangge_content, now_number;
+    TextView fangge_id, fangge_name, fangge_infor, fangge_from, fangge_content, now_number, pre_number;
 
     Button []answer = new Button[3];
 
@@ -49,6 +41,7 @@ public class testPage extends AppCompatActivity {
         answer[2]  = findViewById(R.id.answer3);
 
         now_number = findViewById(R.id.now_number);
+        pre_number = findViewById(R.id.pre_number);
         fangge_id = findViewById(R.id.fangge_id);
         fangge_name = findViewById(R.id.fangge_name);
         fangge_infor = findViewById(R.id.fangge_infor);
@@ -120,7 +113,7 @@ public class testPage extends AppCompatActivity {
         c.moveToFirst();
         Fangge fangge_item = new Fangge(c);
 
-        //        生成干扰项
+        //        生成干扰项 4类问题
         //        fangge_name
         if (question == 0){
             String hint = "____?____";
@@ -212,6 +205,7 @@ public class testPage extends AppCompatActivity {
 
         //        展示
         now_number.setText(String.format("当前进度:%d/%d", now+1, max));
+        pre_number.setText("");
         c.close();
     }
 }
