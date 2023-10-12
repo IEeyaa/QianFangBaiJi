@@ -34,7 +34,7 @@ public class memoryStart extends AppCompatActivity {
         setContentView(R.layout.memorysetting);
 
         // 全局变量加载
-        Global.init(this);
+        Global.initMemory();
 
         buttonBack =  findViewById(R.id.btn_back);
         buttonStart = findViewById(R.id.btn_start);

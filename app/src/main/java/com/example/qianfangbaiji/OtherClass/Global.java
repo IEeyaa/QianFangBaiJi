@@ -44,25 +44,25 @@ public class Global {
     public static List<int[]> fangge_info_array = new ArrayList<>();
 
     public static void init(Context context){
+        sharedPreferences = context.getSharedPreferences("global_prefs", Context.MODE_PRIVATE);
+    }
+    public static void initMemory(){
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime();
 //      格式化日期为字符串
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(currentDate);
-
-        sharedPreferences = context.getSharedPreferences("global_prefs", Context.MODE_PRIVATE);
         String preDate = sharedPreferences.getString("date", "0000-00-00");
-//        基本全局变量更新
+//      基本全局变量更新
         LoadInfo();
-//        时间更新
+//      时间更新
         if(!formattedDate.equals(preDate)){
             RestartInfo();
             date = formattedDate;
             sharedPreferences.edit().putString("date", formattedDate).apply();
         }
     }
-
     @SuppressLint("DefaultLocale")
 //      每日更新 & 更换学习计划 & 主动开始新的一轮 时使用
     public static void RestartInfo() {
@@ -153,9 +153,66 @@ public class Global {
         sharedPreferences.edit().putInt("now", now).apply();
         sharedPreferences.edit().putInt("stage", stage).apply();
     }
-//    重置所有参数
+
+    //    重置所有参数
     public static void ReStart(){
         String sql = "UPDATE fangge SET nowdate = 0, ispassed = 0, maxdate = 0, times = 0, EF = 2.5";
         MySQLHelper.getInstance().sqlOther(sql);
+    }
+
+    public static boolean checkCount(String name, String password){
+        String tempName = sharedPreferences.getString("name", null);
+        String tempPass = sharedPreferences.getString("password", null);
+        String tempMail = sharedPreferences.getString("mail", null);
+        if(name.equals(tempName) || name.equals(tempMail)){
+            if(password.equals(tempPass)){
+                sharedPreferences.edit().putBoolean("already_login", true).apply();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean createCount(String name, String password, String mail, String pass){
+        String tempMail = sharedPreferences.getString("mail", null);
+        String tempCheck = sharedPreferences.getString("check", null);
+
+        if(mail.equals(tempMail) && pass.equals(tempCheck)){
+            sharedPreferences.edit().putString("check", "").apply();
+            sharedPreferences.edit().putString("name", name).apply();
+            sharedPreferences.edit().putString("password", password).apply();
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean reFindCount(String password, String mail, String pass){
+        String tempMail = sharedPreferences.getString("mail", null);
+        String tempCheck = sharedPreferences.getString("check", null);
+
+        if(mail.equals(tempMail) && pass.equals(tempCheck)){
+            sharedPreferences.edit().putString("check", "").apply();
+            sharedPreferences.edit().putString("password", password).apply();
+            return true;
+        }
+        return false;
+    }
+
+
+    public static void storeMailInfo(String mail, String check){
+        sharedPreferences.edit().putString("mail", mail).apply();
+        sharedPreferences.edit().putString("check", check).apply();
+    }
+
+    public static void inspiredCount(){
+        sharedPreferences.edit().putBoolean("already_login", false).apply();
+    }
+
+    public static boolean checkCount(){
+        return sharedPreferences.getBoolean("already_login", false);
+    }
+
+    public static void clearInfo(){
+        sharedPreferences.edit().clear().apply();
     }
 }

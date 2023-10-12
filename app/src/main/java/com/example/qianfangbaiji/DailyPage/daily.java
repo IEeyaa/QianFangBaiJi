@@ -13,7 +13,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.CardPage.MemoryCardList;
+import com.example.qianfangbaiji.LoginPage.login;
 import com.example.qianfangbaiji.OtherClass.Fangge;
+import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
 import com.example.qianfangbaiji.StudyPage.selectmode;
 
@@ -34,17 +36,27 @@ public class daily extends AppCompatActivity {
         setContentView(R.layout.daily);
 
 //        组件动态绑定
-        Button buttonToStudy, buttonToMemory;
-        TextView fangge_from, fangge_content, fangge_infor;
+        Button buttonToStudy, buttonToMemory, buttonToLogin;
+        TextView fangge_from, fangge_content, fangge_infor, fangge_name;
 
         //按钮与文字绑定
         buttonToStudy = findViewById(R.id.studyButton);
         buttonToMemory = findViewById(R.id.memoryButton);
+        buttonToLogin= findViewById(R.id.loginButton);
 
-
+        fangge_name = findViewById(R.id.fangge_name);
         fangge_from = findViewById(R.id.fangge_from);
         fangge_content = findViewById(R.id.fangge_content);
         fangge_infor = findViewById(R.id.fangge_infor);
+
+        buttonToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(daily.this, login.class);
+                Global.inspiredCount();
+                startActivity(intent);
+            }
+        });
 
         buttonToStudy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +80,9 @@ public class daily extends AppCompatActivity {
         //      结果提取
         Fangge fangge_item = new Fangge(c);
         //        展示
+        fangge_name.setText(String.format("“%s”", fangge_item.infor));
         fangge_from.setText(String.format("——方歌来源：%s·%s", fangge_item.dynasty, fangge_item.book));
         fangge_content.setText(fangge_item.content);
-        fangge_infor.setText(String.format("%s·%s",fangge_item.table_name,fangge_item.infor));
+        fangge_infor.setText(String.format("%s", fangge_item.table_name));
     }
 }

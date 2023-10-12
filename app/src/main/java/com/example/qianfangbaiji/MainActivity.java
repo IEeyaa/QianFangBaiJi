@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.DailyPage.daily;
+import com.example.qianfangbaiji.LoginPage.login;
 import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         // 动画效果，Alpha从0到1的变化
         alphaAction.setDuration(2000);
         alphaAction.setFillAfter(true);
-
+        Global.init(this);
         MySQLHelper.getInstance().createDB(this);
 
         setContentView(R.layout.activity_main);
@@ -41,7 +42,13 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(MainActivity.this, daily.class);
+                Intent intent;
+                if(!Global.checkCount()){
+                    intent = new Intent(MainActivity.this, login.class);
+                }
+                else{
+                    intent = new Intent(MainActivity.this, daily.class);
+                }
                 startActivity(intent);
             }
             @Override

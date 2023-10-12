@@ -48,7 +48,8 @@ public class testStart extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("DefaultLocale")
             @Override
-            public void onClick(View v) {String text = Edit.getText().toString();
+            public void onClick(View v) {
+                String text = Edit.getText().toString();
                 if(text.trim().equals("")){
                     max = 0;
                 }
