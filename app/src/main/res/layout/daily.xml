@@ -64,7 +64,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:id="@+id/fangge_name"
-            android:text="123"
+            android:text="@string/test_fill"
             android:textStyle="bold"
             android:textSize="20sp" />
         <TextView
@@ -95,10 +95,10 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:layout_gravity="right"
-            android:gravity="right"
+            android:layout_gravity="end"
+            android:gravity="end"
             android:id="@+id/fangge_from"
-            android:text="——方歌来源：123"
+            android:text="@string/source"
             android:textStyle="bold"
             android:textColor="@color/grey2"
             android:textSize="15sp"

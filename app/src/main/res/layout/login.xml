@@ -16,7 +16,7 @@
             android:background="@color/co_1"
             android:gravity="bottom|center"
             android:paddingBottom="15dp"
-            android:text="登录"
+            android:text="@string/login"
             android:textColor="#FFFFFB"
             android:textSize="30sp" />
     </LinearLayout>
@@ -35,10 +35,11 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="请输入用户名"
+            android:hint="@string/enter_user_name"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/password"
@@ -47,20 +48,23 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:ems="10"
-            android:hint="请输入密码"
+            android:hint="@string/enter_password"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:autofillHints="" />
 
 
         <TextView
             android:id="@+id/find"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginRight="25dp"
-            android:text="忘记密码" />
+            android:text="@string/forget_password"
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -77,7 +81,7 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:background="@color/co_1"
-            android:text="登 录"
+            android:text="@string/login"
             android:textColor="#FFFFFB"
             android:textSize="18sp" />
 
@@ -88,7 +92,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="#FFFFFB"
-            android:text="注 册"
+            android:text="@string/sign_up"
             android:textColor="@color/co_1"
             android:textStyle="bold"
             android:textSize="18sp" />

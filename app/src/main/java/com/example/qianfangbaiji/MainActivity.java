@@ -16,7 +16,6 @@ import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView txt;
     @SuppressLint({"Recycle", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         MySQLHelper.getInstance().createDB(this);
 
         setContentView(R.layout.activity_main);
-        txt = findViewById(R.id.text1);
+        TextView txt = findViewById(R.id.text1);
 
         animationSet.addAnimation(alphaAction);
         txt.startAnimation(animationSet);
