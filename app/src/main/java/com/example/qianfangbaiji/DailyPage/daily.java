@@ -6,14 +6,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.CardPage.MemoryCardList;
-import com.example.qianfangbaiji.LoginPage.login;
+import com.example.qianfangbaiji.LoginPage.Login;
 import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
@@ -49,29 +48,20 @@ public class daily extends AppCompatActivity {
         fangge_content = findViewById(R.id.fangge_content);
         fangge_infor = findViewById(R.id.fangge_infor);
 
-        buttonToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(daily.this, login.class);
-                Global.inspiredCount();
-                startActivity(intent);
-            }
+        buttonToLogin.setOnClickListener(v -> {
+            Intent intent=new Intent(daily.this, Login.class);
+            Global.inspiredCount();
+            startActivity(intent);
         });
 
-        buttonToStudy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(daily.this, selectmode.class);
-                startActivity(intent);
-            }
+        buttonToStudy.setOnClickListener(v -> {
+            Intent intent=new Intent(daily.this, selectmode.class);
+            startActivity(intent);
         });
 
-        buttonToMemory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(daily.this, MemoryCardList.class);
-                startActivity(intent);
-            }
+        buttonToMemory.setOnClickListener(v -> {
+            Intent intent=new Intent(daily.this, MemoryCardList.class);
+            startActivity(intent);
         });
         //      sql查询
         db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);

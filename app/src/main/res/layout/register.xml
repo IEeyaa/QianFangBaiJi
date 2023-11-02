@@ -74,7 +74,7 @@
             android:orientation="horizontal"
             >
             <EditText
-                android:id="@+id/mailCheck"
+                android:id="@+id/verification_code"
                 android:layout_weight="0.7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:paddingEnd="0dp"
                 android:autofillHints="" />
             <Button
-                android:id="@+id/mailGet"
+                android:id="@+id/send_verification_code"
                 android:layout_weight="0.2"
                 android:layout_width="0dp"
                 android:layout_marginRight="30dp"
@@ -110,7 +110,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"

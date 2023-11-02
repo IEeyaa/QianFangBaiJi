@@ -37,9 +37,9 @@
         <activity android:name=".TestPage.testStart" />
         <activity android:name=".TestPage.testReport" />
         <activity android:name=".MemoryPage.memorySelect" />
-        <activity android:name=".LoginPage.login" />
-        <activity android:name=".LoginPage.register" />
-        <activity android:name=".LoginPage.refind" />
+        <activity android:name=".LoginPage.Login" />
+        <activity android:name=".LoginPage.Register" />
+        <activity android:name=".LoginPage.RetrievePassword" />
     </application>
 
 </manifest>
