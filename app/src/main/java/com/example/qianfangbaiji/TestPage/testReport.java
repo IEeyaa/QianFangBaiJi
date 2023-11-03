@@ -51,7 +51,7 @@ public class testReport extends AppCompatActivity {
             array[i] = prefs.getInt("array"+i, -1);
         }
 
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
         fangge_number = findViewById(R.id.fangge_number);
         fangge_number.setText(""+array.length);

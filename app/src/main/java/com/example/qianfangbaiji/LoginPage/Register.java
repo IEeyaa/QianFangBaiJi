@@ -17,7 +17,7 @@ import com.example.qianfangbaiji.R;
 
 public class Register extends AppCompatActivity {
     private static final String TAG = "Register";
-    EditText name_input, password_input, email_input, verification_code_input;
+    EditText nameInput, passwordInput, emailInput, verificationCodeInput;
     Button send_verification_code_button, register_button, back_button;
     // 用于存储倒计时的计时器
     CountDownTimer countDownTimer;
@@ -27,10 +27,10 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.register);
 
         // EditText
-        name_input = findViewById(R.id.name);
-        password_input = findViewById(R.id.password);
-        email_input = findViewById(R.id.mail);
-        verification_code_input = findViewById(R.id.verification_code);
+        nameInput = findViewById(R.id.name);
+        passwordInput = findViewById(R.id.password);
+        emailInput = findViewById(R.id.mail);
+        verificationCodeInput = findViewById(R.id.verification_code);
 
         // Buttons
         send_verification_code_button = findViewById(R.id.send_verification_code);
@@ -39,7 +39,7 @@ public class Register extends AppCompatActivity {
 
         // 点击事件处理
         send_verification_code_button.setOnClickListener(v -> {
-            String emailAddress = email_input.getText().toString();
+            String emailAddress = emailInput.getText().toString();
 
             // 邮箱格式验证
             if (SysEmail.isValidEmail(emailAddress)) {
@@ -68,10 +68,10 @@ public class Register extends AppCompatActivity {
         });
 
         register_button.setOnClickListener(v -> {
-            String user_name = name_input.getText().toString();
-            String user_password = password_input.getText().toString();
-            String user_email = email_input.getText().toString();
-            String user_verification_code = verification_code_input.getText().toString();
+            String user_name = nameInput.getText().toString();
+            String user_password = passwordInput.getText().toString();
+            String user_email = emailInput.getText().toString();
+            String user_verification_code = verificationCodeInput.getText().toString();
 
             Log.d(TAG, "user_name: " + user_name + ", user_password: " + user_password);
             Log.d(TAG, "user_email: " + user_email + ", user_verification_code: " + user_verification_code);
@@ -85,8 +85,6 @@ public class Register extends AppCompatActivity {
         });
 
         //回退页面
-        back_button.setOnClickListener(v -> {
-            finish();
-        });
+        back_button.setOnClickListener(v -> finish());
     }
 }

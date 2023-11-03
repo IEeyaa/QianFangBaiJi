@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_back"
+            android:id="@+id/button_back"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
@@ -90,7 +90,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/grey"
-                android:id="@+id/fangge_from"
+                android:id="@+id/fang_ge_source"
                 android:text="汉·伤寒论"
                 android:textStyle="italic|bold"
                 android:textSize="20sp"

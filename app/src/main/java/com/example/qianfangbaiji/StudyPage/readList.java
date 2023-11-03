@@ -1,12 +1,8 @@
 package com.example.qianfangbaiji.StudyPage;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,8 +21,8 @@ import java.util.List;
 public class readList extends AppCompatActivity {
     //创建一个List对象来存储数据
     List<Fangge> list = new ArrayList<>();
-    Button btn_back, btn_search;
-    EditText Edit;
+    Button backButton, searchButton;
+    EditText searchBox;
     Cursor c;
 
     private void initView() {
@@ -39,36 +35,31 @@ public class readList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.readlist);
-        btn_back = findViewById(R.id.btn_back);
-        btn_search = findViewById(R.id.btn_search);
-        Edit = findViewById(R.id.Edit);
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(readList.this, selectmode.class);
-                startActivity(intent);
+        // Buttons
+        backButton = findViewById(R.id.button_back);
+        searchButton = findViewById(R.id.search_button);
+
+        // EditText
+        searchBox = findViewById(R.id.search_box);
+
+        backButton.setOnClickListener(v -> finish());
+
+        searchButton.setOnClickListener(v -> {
+            String str = searchBox.getText().toString();
+            c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE infor LIKE '%%%s%%' " +
+                    "or content LIKE '%%%s%%'", str, str));
+            c.moveToFirst();
+            list.clear();
+            while (!c.isAfterLast()) {
+                list.add(new Fangge(c));
+                c.moveToNext();
             }
+            c.close();
+            initView();
         });
 
-
-        btn_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = Edit.getText().toString();
-                c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE infor LIKE '%%%s%%' " +
-                        "or content LIKE '%%%s%%'", str, str));
-                c.moveToFirst();
-                list.clear();
-                while (!c.isAfterLast()) {
-                    list.add(new Fangge(c));
-                    c.moveToNext();
-                }
-                c.close();
-                initView();
-            }
-        });
-
+        // 这里的初始化List<Fangge>可以抽象出一个函数func(Cursor) -> List<Fangge>
         c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE iscut = 0");
         c.moveToFirst();
 

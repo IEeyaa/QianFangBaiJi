@@ -32,7 +32,7 @@ public class testPage extends AppCompatActivity {
     SQLiteDatabase db1;
 
     private void init(){
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
 
         answer[0] = findViewById(R.id.answer1);
@@ -44,8 +44,8 @@ public class testPage extends AppCompatActivity {
         fangge_id = findViewById(R.id.fangge_id);
         fangge_name = findViewById(R.id.fangge_name);
         fangge_infor = findViewById(R.id.fangge_infor);
-        fangge_from = findViewById(R.id.fangge_from);
-        fangge_content = findViewById(R.id.fangge_content);
+        fangge_from = findViewById(R.id.fang_ge_source);
+        fangge_content = findViewById(R.id.fang_ge_content);
     }
 
     @SuppressLint("DefaultLocale")

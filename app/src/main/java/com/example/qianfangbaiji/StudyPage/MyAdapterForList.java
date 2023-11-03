@@ -47,7 +47,7 @@ public class MyAdapterForList extends BaseAdapter {
     public void init(View view){
         fangge_id = view.findViewById(R.id.fangge_id);
         fangge_infor =  view.findViewById(R.id.fangge_infor);
-        fangge_content = view.findViewById(R.id.fangge_content);
+        fangge_content = view.findViewById(R.id.fang_ge_content);
         fangge_layout = view.findViewById(R.id.fangge_item);
         btn_collect = view.findViewById(R.id.btn_collect);
         btn_delete = view.findViewById(R.id.btn_delete);

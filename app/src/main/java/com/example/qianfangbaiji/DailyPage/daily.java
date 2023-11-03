@@ -35,8 +35,8 @@ public class daily extends AppCompatActivity {
 
         // TextView
         fangge_name = findViewById(R.id.fangge_name);
-        fangge_from = findViewById(R.id.fangge_from);
-        fangge_content = findViewById(R.id.fangge_content);
+        fangge_from = findViewById(R.id.fang_ge_source);
+        fangge_content = findViewById(R.id.fang_ge_content);
         fangge_info = findViewById(R.id.fangge_infor);
 
         // 按钮与文字绑定

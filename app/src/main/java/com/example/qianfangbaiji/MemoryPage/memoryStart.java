@@ -26,7 +26,6 @@ public class memoryStart extends AppCompatActivity {
     int preDailyNumber;
     int nowOverNumber;
     int totalNumber;
-    private Cursor c;
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class memoryStart extends AppCompatActivity {
         // 全局变量加载
         Global.initMemory();
 
-        buttonBack =  findViewById(R.id.btn_back);
+        buttonBack =  findViewById(R.id.button_back);
         buttonStart = findViewById(R.id.btn_start);
         buttonLoad = findViewById(R.id.btn_load);
         buttonSelect = findViewById(R.id.btn_select);
@@ -89,54 +88,42 @@ public class memoryStart extends AppCompatActivity {
         countDown.setText(String.format("剩余%d天", (totalNumber - nowOverNumber) / Global.daily_new_number));
 
         // 返回上一页
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(memoryStart.this, selectmode.class);
-                startActivity(intent);
-            }
+        buttonBack.setOnClickListener(v -> {
+            Intent intent = new Intent(memoryStart.this, selectmode.class);
+            startActivity(intent);
         });
 
-        buttonSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(memoryStart.this, memorySelect.class);
-                startActivity(intent);
-            }
+        buttonSelect.setOnClickListener(v -> {
+            Intent intent = new Intent(memoryStart.this, memorySelect.class);
+            startActivity(intent);
         });
-        buttonLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(memoryStart.this, memoryLoad.class);
-                startActivity(intent);
-            }
+        buttonLoad.setOnClickListener(v -> {
+            Intent intent = new Intent(memoryStart.this, memoryLoad.class);
+            startActivity(intent);
         });
 
-        buttonStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if(Global.stage == 4){
-                    Global.RestartInfo();
-                }
-                switch(Global.stage){
-                    case 0:
-                        int question = (int) (Math.random() * 2);
-                        if(question == 0) intent=new Intent(memoryStart.this, testPage.class);
-                        else intent=new Intent(memoryStart.this, testPage2B.class);
-                        break;
-                    case 2:
-                        intent=new Intent(memoryStart.this, testPage.class);
-                        break;
-                    case 3:
-                        intent=new Intent(memoryStart.this, testPage2B.class);
-                        break;
-                    default:
-                        intent=new Intent(memoryStart.this, memoryPage.class);
-                        break;
-                }
-                startActivity(intent);
+        buttonStart.setOnClickListener(v -> {
+            Intent intent;
+            if(Global.stage == 4){
+                Global.RestartInfo();
             }
+            switch(Global.stage){
+                case 0:
+                    int question = (int) (Math.random() * 2);
+                    if(question == 0) intent=new Intent(memoryStart.this, testPage.class);
+                    else intent=new Intent(memoryStart.this, testPage2B.class);
+                    break;
+                case 2:
+                    intent=new Intent(memoryStart.this, testPage.class);
+                    break;
+                case 3:
+                    intent=new Intent(memoryStart.this, testPage2B.class);
+                    break;
+                default:
+                    intent=new Intent(memoryStart.this, memoryPage.class);
+                    break;
+            }
+            startActivity(intent);
         });
     }
 }

@@ -11,22 +11,25 @@
         android:layout_marginBottom="20dp"
         android:id="@+id/first"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/back"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp" />
+            android:src="@drawable/back"
+            android:contentDescription="@string/go_back_to_last_page" />
+
         <TextView
-            android:id="@+id/test"
+            android:id="@+id/choose_mode"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:layout_centerInParent="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/select"
             android:textStyle="bold"
@@ -51,7 +54,7 @@
             android:layout_centerHorizontal="true"
             />
         <LinearLayout
-            android:id="@+id/buttonToRead"
+            android:id="@+id/read_mode_button"
             android:layout_alignRight="@id/center"
             android:layout_marginRight="20dp"
             android:layout_width="120dp"
@@ -67,6 +70,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:background="@drawable/read"
+                android:contentDescription="@string/read_mode_icon"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -82,7 +86,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/buttonToMemory"
+            android:id="@+id/random_test_button"
             android:layout_alignLeft="@id/center"
             android:layout_marginLeft="20dp"
             android:layout_width="120dp"
@@ -129,7 +133,7 @@
             />
 
         <LinearLayout
-            android:id="@+id/buttonToCollect"
+            android:id="@+id/favorite_button"
             android:layout_alignRight="@id/center2"
             android:layout_marginRight="20dp"
             android:layout_width="120dp"
@@ -159,7 +163,7 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/buttonToDelete"
+            android:id="@+id/delete_button"
             android:layout_alignLeft="@id/center2"
             android:layout_marginLeft="20dp"
             android:layout_width="120dp"
@@ -207,7 +211,7 @@
             />
 
         <LinearLayout
-            android:id="@+id/buttonToTest"
+            android:id="@+id/daily_test_button"
             android:layout_alignTop="@id/center5"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"

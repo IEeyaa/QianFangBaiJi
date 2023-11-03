@@ -43,9 +43,9 @@ public class collectList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collectlist);
-        btn_search = findViewById(R.id.btn_search);
-        Edit = findViewById(R.id.Edit);
-        btn_back = findViewById(R.id.btn_back);
+        btn_search = findViewById(R.id.search_button);
+        Edit = findViewById(R.id.search_box);
+        btn_back = findViewById(R.id.button_back);
 
         btn_back.setOnClickListener(v -> {
             Intent intent = new Intent(collectList.this, selectmode.class);

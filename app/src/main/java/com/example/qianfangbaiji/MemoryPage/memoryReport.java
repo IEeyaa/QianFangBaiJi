@@ -45,7 +45,7 @@ public class memoryReport extends AppCompatActivity {
         max = Global.number;
         fangge_info = Global.fangge_info_array;
 
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
         fangge_number = findViewById(R.id.fangge_number);
         fangge_number.setText(""+max);

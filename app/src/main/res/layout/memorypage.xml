@@ -11,7 +11,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_back"
+            android:id="@+id/button_back"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
@@ -96,7 +96,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:textColor="@color/black"
-            android:id="@+id/fangge_from"
+            android:id="@+id/fang_ge_source"
             android:text="汉·伤寒论"
             android:textSize="20sp"
             />
@@ -108,7 +108,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:textColor="@color/black"
-            android:id="@+id/fangge_content"
+            android:id="@+id/fang_ge_content"
             android:lineSpacingExtra="20dp"
             android:lineSpacingMultiplier="1.2"
             android:text="桑菊饮中桔杏翘，芦根甘草薄荷饶；\n清疏肺卫轻宣剂，风温咳嗽服之消。"

@@ -35,7 +35,7 @@ public class memoryLoad extends AppCompatActivity {
         setContentView(R.layout.memoryload);
 
 
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
         // for get back
         btn_back.setOnClickListener(v -> {
