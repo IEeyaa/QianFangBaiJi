@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +16,8 @@ import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
 
 public class Register extends AppCompatActivity {
-    EditText name_input, password_input, mail_input, verification_code_input;
+    private static final String TAG = "Register";
+    EditText name_input, password_input, email_input, verification_code_input;
     Button send_verification_code_button, register_button, back_button;
     // 用于存储倒计时的计时器
     CountDownTimer countDownTimer;
@@ -27,7 +29,7 @@ public class Register extends AppCompatActivity {
         // EditText
         name_input = findViewById(R.id.name);
         password_input = findViewById(R.id.password);
-        mail_input = findViewById(R.id.mail);
+        email_input = findViewById(R.id.mail);
         verification_code_input = findViewById(R.id.verification_code);
 
         // Buttons
@@ -37,11 +39,11 @@ public class Register extends AppCompatActivity {
 
         // 点击事件处理
         send_verification_code_button.setOnClickListener(v -> {
-            String emailAddress = mail_input.getText().toString();
+            String emailAddress = email_input.getText().toString();
 
             // 邮箱格式验证
             if (SysEmail.isValidEmail(emailAddress)) {
-                SysEmail.sendEmail(Register.this, emailAddress); // 发送邮件
+                SysEmail.sendVerifyEmail(Register.this, emailAddress);
 
                 // 禁用按钮
                 send_verification_code_button.setEnabled(false);
@@ -68,9 +70,11 @@ public class Register extends AppCompatActivity {
         register_button.setOnClickListener(v -> {
             String user_name = name_input.getText().toString();
             String user_password = password_input.getText().toString();
-            String user_email = verification_code_input.getText().toString();
+            String user_email = email_input.getText().toString();
             String user_verification_code = verification_code_input.getText().toString();
 
+            Log.d(TAG, "user_name: " + user_name + ", user_password: " + user_password);
+            Log.d(TAG, "user_email: " + user_email + ", user_verification_code: " + user_verification_code);
             if(Global.createCount(user_name, user_password, user_email, user_verification_code)){
                 Intent intent=new Intent(Register.this, Login.class);
                 startActivity(intent);

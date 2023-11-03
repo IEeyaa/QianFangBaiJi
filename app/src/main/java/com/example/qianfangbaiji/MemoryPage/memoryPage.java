@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -75,35 +74,26 @@ public class memoryPage extends AppCompatActivity {
             btn_left.setVisibility(View.INVISIBLE);
         }
         // 返回上一页
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.LazyStore(now);
-                Intent intent = new Intent(memoryPage.this,memoryStart.class);
-                startActivity(intent);
-            }
+        btn_back.setOnClickListener(v -> {
+            Global.LazyStore(now);
+            Intent intent = new Intent(memoryPage.this,memoryStart.class);
+            startActivity(intent);
         });
         // 前往上一个条文
-        btn_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.fangge_info_array.get(now)[1] = q_number_new;
-                Global.now -= 1;
-                Global.LazyStore(now);
-                Intent intent = new Intent(memoryPage.this, memoryPage.class);
-                startActivity(intent);
-            }
+        btn_left.setOnClickListener(v -> {
+            Global.fangge_info_array.get(now)[1] = q_number_new;
+            Global.now -= 1;
+            Global.LazyStore(now);
+            Intent intent = new Intent(memoryPage.this, memoryPage.class);
+            startActivity(intent);
         });
         // 前往下一个条文
-        btn_right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.fangge_info_array.get(now)[1] = q_number_new;
-                Global.now += 1;
-                Global.LazyStore(now);
-                Intent intent = new Intent(memoryPage.this, memoryPage.class);
-                startActivity(intent);
-            }
+        btn_right.setOnClickListener(v -> {
+            Global.fangge_info_array.get(now)[1] = q_number_new;
+            Global.now += 1;
+            Global.LazyStore(now);
+            Intent intent = new Intent(memoryPage.this, memoryPage.class);
+            startActivity(intent);
         });
 
         //恢复上一次评级
@@ -114,50 +104,35 @@ public class memoryPage extends AppCompatActivity {
         }
 
         // 评级标志
-        star[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
-                star[0].setAlpha(1.0f);
-                q_number_new = 1;
-            }
+        star[0].setOnClickListener(v -> {
+            for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
+            star[0].setAlpha(1.0f);
+            q_number_new = 1;
         });
-        star[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
-                star[1].setAlpha(1.0f);
-                q_number_new = 2;
-            }
+        star[1].setOnClickListener(v -> {
+            for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
+            star[1].setAlpha(1.0f);
+            q_number_new = 2;
         });
-        star[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
-                star[2].setAlpha(1.0f);
-                q_number_new = 3;
-            }
+        star[2].setOnClickListener(v -> {
+            for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
+            star[2].setAlpha(1.0f);
+            q_number_new = 3;
         });
-        star[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
-                star[3].setAlpha(1.0f);
-                q_number_new = 4;
-            }
+        star[3].setOnClickListener(v -> {
+            for(int i=0;i<4;i++) star[i].setAlpha(0.2f);
+            star[3].setAlpha(1.0f);
+            q_number_new = 4;
         });
 
         // 结束
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.stage = 2;
-                Global.fangge_info_array.get(now)[1] = q_number_new;
-                Global.now = edge;
-                Global.LazyStore(now);
-                Intent intent = new Intent(memoryPage.this, testPage.class);
-                startActivity(intent);
-            }
+        submit.setOnClickListener(v -> {
+            Global.stage = 2;
+            Global.fangge_info_array.get(now)[1] = q_number_new;
+            Global.now = edge;
+            Global.LazyStore(now);
+            Intent intent = new Intent(memoryPage.this, testPage.class);
+            startActivity(intent);
         });
 
         Cursor c = MySQLHelper.getInstance().sqlSelect(
@@ -168,7 +143,7 @@ public class memoryPage extends AppCompatActivity {
 
         // 展示
         fangge_id.setText(String.format("方歌: %d/%d", fangge_item.id, Global.total_number));
-        fangge_name.setText(fangge_item.infor);
+        fangge_name.setText(fangge_item.info);
         fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
         fangge_content.setText(fangge_item.content);
         fangge_infor.setText(String.format("治法：%s",fangge_item.table_name));

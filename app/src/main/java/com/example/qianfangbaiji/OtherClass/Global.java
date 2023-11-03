@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,8 +15,7 @@ import java.util.List;
 
 //    全局变量
 public class Global {
-
-    private static String date = "0000-00-00";
+    private static final String TAG = "Global";
 
     private static SharedPreferences sharedPreferences;
 
@@ -59,7 +59,6 @@ public class Global {
 //      时间更新
         if(!formattedDate.equals(preDate)){
             RestartInfo();
-            date = formattedDate;
             sharedPreferences.edit().putString("date", formattedDate).apply();
         }
     }
@@ -175,7 +174,9 @@ public class Global {
 
     public static boolean createCount(String name, String password, String mail, String pass){
         String tempMail = sharedPreferences.getString("mail", null);
-        String tempCheck = sharedPreferences.getString("check", null);
+        String tempCheck = sharedPreferences.getString("verification_code", null);
+        Log.d(TAG, tempMail);
+        Log.d(TAG, tempCheck);
 
         if(mail.equals(tempMail) && pass.equals(tempCheck)){
             sharedPreferences.edit().putString("check", "").apply();
@@ -199,9 +200,9 @@ public class Global {
     }
 
 
-    public static void storeMailInfo(String mail, String check){
+    public static void storeMailInfo(String mail, String verification_code){
         sharedPreferences.edit().putString("mail", mail).apply();
-        sharedPreferences.edit().putString("check", check).apply();
+        sharedPreferences.edit().putString("verification_code", verification_code).apply();
     }
 
     public static void inspiredCount(){

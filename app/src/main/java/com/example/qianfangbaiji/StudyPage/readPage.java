@@ -28,7 +28,6 @@ public class readPage extends AppCompatActivity {
     int total_number = Global.total_number;
     int fangge_number;
     String from;
-    private Cursor c;
     SQLiteDatabase db1;
     boolean has_collect = true;
 
@@ -60,17 +59,17 @@ public class readPage extends AppCompatActivity {
         fangge_number = getIntent().getIntExtra("fangge_number", 1);
         from = getIntent().getStringExtra("from");
 
-//        初始化
+        // 初始化
         init();
-//        查找与检索
+        // 查找与检索
         db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-        c = db1.rawQuery(String.format("SELECT * FROM %s WHERE id = %d", "fangge", fangge_number), null);
-        c.moveToFirst();
-        Fangge fangge_item = new Fangge(c);
-        c.close();
+        Cursor cursor = db1.rawQuery(String.format("SELECT * FROM %s WHERE id = %d", "fangge", fangge_number), null);
+        cursor.moveToFirst();
+        Fangge fangge_item = new Fangge(cursor);
+        cursor.close();
         //        展示
         fangge_id.setText(String.format("方歌: %d/%d", fangge_item.id, total_number));
-        fangge_name.setText(fangge_item.infor);
+        fangge_name.setText(fangge_item.info);
         fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
         fangge_content.setText(fangge_item.content);
         fangge_infor.setText(String.format("治法：%s",fangge_item.table_name));
@@ -89,87 +88,74 @@ public class readPage extends AppCompatActivity {
             btn_left.setVisibility(View.INVISIBLE);
         }
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if(from.equals("delete")){
+        btn_back.setOnClickListener(v -> {
+            Intent intent;
+            switch (from) {
+                case "delete":
                     intent = new Intent(readPage.this, deleteList.class);
-                }
-                else if(from.equals("collect")){
+                    break;
+                case "collect":
                     intent = new Intent(readPage.this, collectList.class);
-                }
-                else if(from.equals("memory")){
+                    break;
+                case "memory":
                     intent = new Intent(readPage.this, memoryReport.class);
-                }
-                else if(from.equals("test")){
+                    break;
+                case "test":
                     intent = new Intent(readPage.this, testReport.class);
-                }
-                else{
+                    break;
+                default:
                     intent = new Intent(readPage.this, readList.class);
+                    break;
+            }
+            startActivity(intent);
+        });
+
+        btn_left.setOnClickListener(v -> {
+            Intent intent = new Intent(readPage.this, readPage.class);
+            intent.putExtra("fangge_number", fangge_number - 1);//参数：name、value
+            intent.putExtra("from", from);
+            startActivity(intent);
+        });
+        btn_right.setOnClickListener(v -> {
+            Intent intent = new Intent(readPage.this, readPage.class);
+            intent.putExtra("fangge_number", fangge_number + 1);//参数：name、value
+            intent.putExtra("from", from);
+            startActivity(intent);
+        });
+        btn_search.setOnClickListener(v -> {
+            int new_number;
+            String text = Edit.getText().toString();
+            if(text.trim().equals("")){
+                Toast.makeText(readPage.this, "请输入范围内数字", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                new_number = Integer.parseInt(text);
+                if(new_number <= total_number && new_number >= 1){
+                    Intent intent = new Intent(readPage.this, readPage.class);
+                    intent.putExtra("from", from);
+                    intent.putExtra("fangge_number", new_number);//参数：name、value
+                    startActivity(intent);
                 }
-                startActivity(intent);
+                else Toast.makeText(readPage.this, "请输入范围内数字", Toast.LENGTH_SHORT).show();
             }
         });
 
-        btn_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(readPage.this, readPage.class);
-                intent.putExtra("fangge_number", fangge_number - 1);//参数：name、value
-                intent.putExtra("from", from);
-                startActivity(intent);
+        //  收藏
+        btn_collect.setOnClickListener(v -> {
+            String sql;
+            if(has_collect) {
+                v.setBackgroundResource(R.drawable.collec);
+                sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
+                db1.execSQL(sql);
+                Toast.makeText(readPage.this, "条文取消收藏成功", Toast.LENGTH_SHORT).show();
             }
-        });
-        btn_right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(readPage.this, readPage.class);
-                intent.putExtra("fangge_number", fangge_number + 1);//参数：name、value
-                intent.putExtra("from", from);
-                startActivity(intent);
+            else{
+                v.setBackgroundResource(R.drawable.collec2);
+                sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
+                db1.execSQL(sql);
+                Toast.makeText(readPage.this, "条文收藏成功", Toast.LENGTH_SHORT).show();
             }
-        });
-        btn_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int new_number;
-                String text = Edit.getText().toString();
-                if(text.trim().equals("")){
-                    Toast.makeText(readPage.this, "请输入范围内数字", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    new_number = Integer.valueOf(text);
-                    if(new_number <= total_number && new_number >= 1){
-                        Intent intent = new Intent(readPage.this, readPage.class);
-                        intent.putExtra("from", from);
-                        intent.putExtra("fangge_number", new_number);//参数：name、value
-                        startActivity(intent);
-                    }
-                    else Toast.makeText(readPage.this, "请输入范围内数字", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-//        收藏
-        btn_collect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String sql;
-                if(has_collect) {
-                    v.setBackgroundResource(R.drawable.collec);
-                    sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                    db1.execSQL(sql);
-                    Toast.makeText(readPage.this, "条文取消收藏成功", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    v.setBackgroundResource(R.drawable.collec2);
-                    sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                    db1.execSQL(sql);
-                    Toast.makeText(readPage.this, "条文收藏成功", Toast.LENGTH_SHORT).show();
-                }
-                has_collect = !has_collect;
-            }
+            has_collect = !has_collect;
         });
     }
 }

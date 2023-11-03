@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
@@ -19,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
-import com.example.qianfangbaiji.TestPage.testStart;
 
 //根据数据库创建
 public class testPage2B extends AppCompatActivity {
@@ -66,77 +64,68 @@ public class testPage2B extends AppCompatActivity {
         init();
 
         // 返回上一页
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Intent intent = new Intent(testPage2B.this, memoryStart.class);
-            startActivity(intent);
-            }
+        btn_back.setOnClickListener(v -> {
+        Intent intent = new Intent(testPage2B.this, memoryStart.class);
+        startActivity(intent);
         });
 
         final int right_answer =  (int) (Math.random() * Global.answer_number);
 
         for(int i=0; i<Global.answer_number;i++){
             if(i != right_answer){
-                answer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(test_q_add > -1){
-                            test_q_add -= 1;
-                        }
-                        float originalX = v.getX();
-                        float originalY = v.getY();
-                        Animation shake = new TranslateAnimation(0, 10, 0, 0);
-                        shake.setDuration(500);
-                        shake.setInterpolator(new CycleInterpolator(5));
-                        v.startAnimation(shake);
-                        v.setX(originalX);
-                        v.setY(originalY);
+                answer[i].setOnClickListener(v -> {
+                    if(test_q_add > -1){
+                        test_q_add -= 1;
                     }
+                    float originalX = v.getX();
+                    float originalY = v.getY();
+                    Animation shake = new TranslateAnimation(0, 10, 0, 0);
+                    shake.setDuration(500);
+                    shake.setInterpolator(new CycleInterpolator(5));
+                    v.startAnimation(shake);
+                    v.setX(originalX);
+                    v.setY(originalY);
                 });
             }
             else{
-                answer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(now < edge){
-                            q_number = 2 + test_q_add * 2;
-                        }
-                        else{
-                            q_number += test_q_add;
-                        }
-                        v.setBackgroundColor(Color.rgb(199, 230, 203));
-                        Intent intent;
-                        Global.now++;
-                        if(Global.stage == 0){
-                            if (now == edge - 1){
-                                Global.stage = 1;
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage2B.this, memoryPage.class);
-                            }
-                            else{
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage2B.this, testPage2B.class);
-                            }
-                        }
-                        else{
-                            if (now == max - 1){
-                                Global.now = 0;
-                                Global.stage = 4;
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage2B.this, memoryReport.class);
-                            }
-                            else{
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage2B.this, testPage2B.class);
-                            }
-                        }
-                        startActivity(intent);
+                answer[i].setOnClickListener(v -> {
+                    if(now < edge){
+                        q_number = 2 + test_q_add * 2;
                     }
+                    else{
+                        q_number += test_q_add;
+                    }
+                    v.setBackgroundColor(Color.rgb(199, 230, 203));
+                    Intent intent;
+                    Global.now++;
+                    if(Global.stage == 0){
+                        if (now == edge - 1){
+                            Global.stage = 1;
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage2B.this, memoryPage.class);
+                        }
+                        else{
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage2B.this, testPage2B.class);
+                        }
+                    }
+                    else{
+                        if (now == max - 1){
+                            Global.now = 0;
+                            Global.stage = 4;
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage2B.this, memoryReport.class);
+                        }
+                        else{
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage2B.this, testPage2B.class);
+                        }
+                    }
+                    startActivity(intent);
                 });
             }
         }
@@ -168,7 +157,7 @@ public class testPage2B extends AppCompatActivity {
             }
         }
         //        展示
-        fangge_name.setText(fangge_item.infor);
+        fangge_name.setText(fangge_item.info);
         fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
         c.close();
         // 获取全局持久变量

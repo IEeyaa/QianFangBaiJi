@@ -40,7 +40,7 @@ public class RetrievePassword extends AppCompatActivity {
 
             // 邮箱格式验证
             if (SysEmail.isValidEmail(emailAddress)) {
-                SysEmail.sendEmail(RetrievePassword.this, emailAddress);
+                SysEmail.sendVerifyEmail(RetrievePassword.this, emailAddress);
 
                 // 禁用按钮
                 send_verification_code.setEnabled(false);
