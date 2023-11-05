@@ -22,6 +22,7 @@ import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 
 import java.util.List;
+import java.util.Locale;
 
 //MyAdapter模块，调用相应按钮对应的文本并将其删除
 public class MyAdapterForList extends BaseAdapter {
@@ -46,7 +47,7 @@ public class MyAdapterForList extends BaseAdapter {
     public void init(View view){
         fangge_id = view.findViewById(R.id.fangge_id);
         fangge_infor =  view.findViewById(R.id.fangge_infor);
-        fangge_content = view.findViewById(R.id.fangge_content);
+        fangge_content = view.findViewById(R.id.fang_ge_content);
         fangge_layout = view.findViewById(R.id.fangge_item);
         btn_collect = view.findViewById(R.id.btn_collect);
         btn_delete = view.findViewById(R.id.btn_delete);
@@ -70,55 +71,46 @@ public class MyAdapterForList extends BaseAdapter {
     @SuppressLint({"ViewHolder", "SetTextI18n"})
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
+        Locale usLocale = Locale.US;
         View view = View.inflate(parent.getContext(), R.layout.listitem, null);
         init(view);
         Fangge fangge_item = list.get(position);
         final int fangge_number;
         fangge_number = fangge_item.id;
         fangge_id.setText(""+fangge_number);
-        fangge_infor.setText(fangge_item.infor);
+        fangge_infor.setText(fangge_item.info);
         fangge_content.setText(fangge_item.content.substring(0, 7) + "...");
 
-        btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View parentView = (View) v.getParent().getParent();
-                setAnimation(parentView, parent.getContext(), position);
-            }
+        btn_delete.setOnClickListener(v -> {
+            View parentView = (View) v.getParent().getParent();
+            setAnimation(parentView, parent.getContext(), position);
         });
 //        设置样式
         has_collect = (fangge_item.isCollect == 1);
         if(has_collect)btn_collect.setBackgroundResource(R.drawable.collec2);
         else btn_collect.setBackgroundResource(R.drawable.collec);
-        btn_collect.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("DefaultLocale")
-            @Override
-            public void onClick(View v) {
-            String sql;
-            if(has_collect) {
-                v.setBackgroundResource(R.drawable.collec);
-                sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                MySQLHelper.getInstance().sqlOther(sql);
-                Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                v.setBackgroundResource(R.drawable.collec2);
-                sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                MySQLHelper.getInstance().sqlOther(sql);
-                Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
-            }
-            has_collect = !has_collect;
-            }
+        btn_collect.setOnClickListener(v -> {
+        String sql;
+        if(has_collect) {
+            v.setBackgroundResource(R.drawable.collec);
+            sql = String.format(usLocale, "update fangge set iscollect = 0 where id = %d", fangge_number);
+            MySQLHelper.getInstance().sqlOther(sql);
+            Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            v.setBackgroundResource(R.drawable.collec2);
+            sql = String.format(usLocale, "update fangge set iscollect = 1 where id = %d", fangge_number);
+            MySQLHelper.getInstance().sqlOther(sql);
+            Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
+        }
+        has_collect = !has_collect;
         });
 
-        fangge_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(myList, readPage.class);
-                intent.putExtra("fangge_number", fangge_number);
-                intent.putExtra("from", from);
-                myList.startActivity(intent);
-            }
+        fangge_layout.setOnClickListener(v -> {
+            Intent intent = new Intent(myList, readPage.class);
+            intent.putExtra("fangge_number", fangge_number);
+            intent.putExtra("from", from);
+            myList.startActivity(intent);
         });
 
         return view;
@@ -141,7 +133,6 @@ public class MyAdapterForList extends BaseAdapter {
             public void onAnimationEnd(Animator animation) {
                 //这里是关键删除句
                 int fangge_number = list.get(position).id;
-                @SuppressLint("DefaultLocale")
                 String sql = String.format("update fangge set iscut = 1 where id = %d", fangge_number);
                 MySQLHelper.getInstance().sqlOther(sql);
                 Toast.makeText(context, "方歌删除成功", Toast.LENGTH_SHORT).show();

@@ -6,14 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.qianfangbaiji.CardPage.MemoryCardList;
-import com.example.qianfangbaiji.LoginPage.login;
 import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
@@ -23,66 +21,54 @@ import com.example.qianfangbaiji.StudyPage.selectmode;
 public class daily extends AppCompatActivity {
     int total_number = 206;
     int fangge_number = (int) (Math.random() * total_number);
-
-//    数据库相关
-    SQLiteDatabase db1;
-    Cursor c;
+    Button buttonToStudy, buttonToMemory, buttonToLogin;
+    TextView fangge_from, fangge_content, fangge_info, fangge_name;
+    // 数据库相关
+    SQLiteDatabase database;
+    Cursor cursor;
 
     @SuppressLint({"ResourceType", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        获取xml链接
         setContentView(R.layout.daily);
 
-//        组件动态绑定
-        Button buttonToStudy, buttonToMemory, buttonToLogin;
-        TextView fangge_from, fangge_content, fangge_infor, fangge_name;
+        // TextView
+        fangge_name = findViewById(R.id.fangge_name);
+        fangge_from = findViewById(R.id.fang_ge_source);
+        fangge_content = findViewById(R.id.fang_ge_content);
+        fangge_info = findViewById(R.id.fangge_infor);
 
-        //按钮与文字绑定
+        // 按钮与文字绑定
         buttonToStudy = findViewById(R.id.studyButton);
         buttonToMemory = findViewById(R.id.memoryButton);
         buttonToLogin= findViewById(R.id.loginButton);
 
-        fangge_name = findViewById(R.id.fangge_name);
-        fangge_from = findViewById(R.id.fangge_from);
-        fangge_content = findViewById(R.id.fangge_content);
-        fangge_infor = findViewById(R.id.fangge_infor);
-
-        buttonToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(daily.this, login.class);
-                Global.inspiredCount();
-                startActivity(intent);
-            }
+        buttonToLogin.setOnClickListener(v -> {
+            Global.inspiredCount();
+            finish();
         });
 
-        buttonToStudy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(daily.this, selectmode.class);
-                startActivity(intent);
-            }
+        buttonToStudy.setOnClickListener(v -> {
+            Intent intent=new Intent(daily.this, selectmode.class);
+            startActivity(intent);
         });
 
-        buttonToMemory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(daily.this, MemoryCardList.class);
-                startActivity(intent);
-            }
+        buttonToMemory.setOnClickListener(v -> {
+            Intent intent=new Intent(daily.this, MemoryCardList.class);
+            startActivity(intent);
         });
-        //      sql查询
-        db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-        c = db1.rawQuery(String.format("SELECT * FROM %s WHERE id = %d", "fangge", fangge_number), null);
-        c.moveToFirst();
-        //      结果提取
-        Fangge fangge_item = new Fangge(c);
-        //        展示
-        fangge_name.setText(String.format("“%s”", fangge_item.infor));
-        fangge_from.setText(String.format("——方歌来源：%s·%s", fangge_item.dynasty, fangge_item.book));
+
+        // sql查询
+        database = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
+        cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE id = %d", "fangge", fangge_number), null);
+        cursor.moveToFirst(); // 将光标移动到结果集的第一行
+        // 结果提取
+        Fangge fangge_item = new Fangge(cursor);
+        // 展示
+        fangge_name.setText(String.format("“%s”", fangge_item.info));
         fangge_content.setText(fangge_item.content);
-        fangge_infor.setText(String.format("%s", fangge_item.table_name));
+        fangge_from.setText(String.format("——方歌来源：%s·%s", fangge_item.dynasty, fangge_item.book));
+        fangge_info.setText(String.format("%s", fangge_item.table_name));
     }
 }

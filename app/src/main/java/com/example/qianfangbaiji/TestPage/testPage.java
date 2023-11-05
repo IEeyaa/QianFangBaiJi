@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
@@ -33,7 +32,7 @@ public class testPage extends AppCompatActivity {
     SQLiteDatabase db1;
 
     private void init(){
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
 
         answer[0] = findViewById(R.id.answer1);
@@ -45,8 +44,8 @@ public class testPage extends AppCompatActivity {
         fangge_id = findViewById(R.id.fangge_id);
         fangge_name = findViewById(R.id.fangge_name);
         fangge_infor = findViewById(R.id.fangge_infor);
-        fangge_from = findViewById(R.id.fangge_from);
-        fangge_content = findViewById(R.id.fangge_content);
+        fangge_from = findViewById(R.id.fang_ge_source);
+        fangge_content = findViewById(R.id.fang_ge_content);
     }
 
     @SuppressLint("DefaultLocale")
@@ -62,12 +61,9 @@ public class testPage extends AppCompatActivity {
         init();
 
         // 返回上一页
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Intent intent = new Intent(testPage.this,testStart.class);
-            startActivity(intent);
-            }
+        btn_back.setOnClickListener(v -> {
+        Intent intent = new Intent(testPage.this,testStart.class);
+        startActivity(intent);
         });
 
         //  生成答案
@@ -76,35 +72,29 @@ public class testPage extends AppCompatActivity {
 
         for(int i=0; i<Global.answer_number;i++){
             if(i != right_answer){
-                answer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        float originalX = v.getX();
-                        float originalY = v.getY();
-                        Animation shake = new TranslateAnimation(0, 10, 0, 0);
-                        shake.setDuration(500);
-                        shake.setInterpolator(new CycleInterpolator(5));
-                        v.startAnimation(shake);
-                        v.setX(originalX);
-                        v.setY(originalY);
-                    }
+                answer[i].setOnClickListener(v -> {
+                    float originalX = v.getX();
+                    float originalY = v.getY();
+                    Animation shake = new TranslateAnimation(0, 10, 0, 0);
+                    shake.setDuration(500);
+                    shake.setInterpolator(new CycleInterpolator(5));
+                    v.startAnimation(shake);
+                    v.setX(originalX);
+                    v.setY(originalY);
                 });
             }
             else{
-                answer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        v.setBackgroundColor(Color.rgb(199, 230, 203));
-                        Intent intent;
-                        if (now >= max - 1){
-                            intent = new Intent(testPage.this, testReport.class);
-                        }
-                        else{
-                            intent = new Intent(testPage.this, testPage.class);
-                        }
-                        intent.putExtra("now", now+1);
-                        startActivity(intent);
+                answer[i].setOnClickListener(v -> {
+                    v.setBackgroundColor(Color.rgb(199, 230, 203));
+                    Intent intent;
+                    if (now >= max - 1){
+                        intent = new Intent(testPage.this, testReport.class);
                     }
+                    else{
+                        intent = new Intent(testPage.this, testPage.class);
+                    }
+                    intent.putExtra("now", now+1);
+                    startActivity(intent);
                 });
             }
         }
@@ -118,11 +108,11 @@ public class testPage extends AppCompatActivity {
         if (question == 0){
             String hint = "____?____";
             fangge_name.setText(hint);
-            c = db1.rawQuery(String.format("SELECT * FROM %s WHERE infor != '%s' ORDER BY RANDOM()", "fangge", fangge_item.infor), null);
+            c = db1.rawQuery(String.format("SELECT * FROM %s WHERE infor != '%s' ORDER BY RANDOM()", "fangge", fangge_item.info), null);
             c.moveToFirst();
             for(int i=0;i<Global.answer_number;i++){
                 if(i == right_answer){
-                    answer[i].setText(fangge_item.infor);
+                    answer[i].setText(fangge_item.info);
                 }
                 else{
                     answer[i].setText(c.getString(c.getColumnIndex("infor")));
@@ -149,7 +139,7 @@ public class testPage extends AppCompatActivity {
                     c.moveToNext();
                 }
             }
-            fangge_name.setText(fangge_item.infor);
+            fangge_name.setText(fangge_item.info);
             fangge_content.setText(fangge_item.content);
             fangge_infor.setText(String.format("治法：%s",fangge_item.table_name));
         }
@@ -179,7 +169,7 @@ public class testPage extends AppCompatActivity {
                     c.moveToNext();
                 }
             }
-            fangge_name.setText(fangge_item.infor);
+            fangge_name.setText(fangge_item.info);
             fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
             fangge_content.setText(replace);
             fangge_infor.setText(String.format("治法：%s",fangge_item.table_name));
@@ -197,7 +187,7 @@ public class testPage extends AppCompatActivity {
                     c.moveToNext();
                 }
             }
-            fangge_name.setText(fangge_item.infor);
+            fangge_name.setText(fangge_item.info);
             fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
             fangge_content.setText(fangge_item.content);
             fangge_infor.setText(String.format("治法：%s", hint));

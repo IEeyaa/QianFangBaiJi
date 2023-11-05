@@ -63,7 +63,7 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:id="@+id/title"
-            android:text="这是标题"
+            android:text="@string/this_is_title"
             android:textSize="25sp"
             />
         <View
@@ -79,7 +79,7 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:id="@+id/hint1"
-            android:text="这是提示1"
+            android:text="@string/this_is_hint1"
             android:textSize="20sp"
             android:textColor = "@color/grey"
             />
@@ -96,7 +96,7 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:id="@+id/hint2"
-            android:text="这是提示2"
+            android:text="@string/this_is_hint_2"
             android:textSize="20sp"
             android:textColor = "@color/grey"
             />
@@ -113,7 +113,7 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:id="@+id/hint3"
-            android:text="这是提示3"
+            android:text="@string/this_is_hint_3"
             android:textSize="20sp"
             android:textColor = "@color/grey"
             />
@@ -130,7 +130,7 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:id="@+id/hint4"
-            android:text="这是提示4"
+            android:text="@string/this_is_hint_4"
             android:textSize="20sp"
             android:textColor = "@color/grey"
             />
@@ -151,7 +151,7 @@
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text = "显示内容"
+            android:text="@string/show_content"
             android:textStyle="bold"
             android:textColor="@color/co_1"
             android:textSize="20sp"

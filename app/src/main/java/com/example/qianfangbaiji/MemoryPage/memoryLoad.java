@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,6 @@ import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.OtherClass.MySQLHelper;
 import com.example.qianfangbaiji.R;
 import com.example.qianfangbaiji.StudyPage.MyAdapterForList;
-import com.example.qianfangbaiji.StudyPage.readPage;
-import com.example.qianfangbaiji.StudyPage.selectmode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,15 +35,12 @@ public class memoryLoad extends AppCompatActivity {
         setContentView(R.layout.memoryload);
 
 
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
         // for get back
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(memoryLoad.this, memoryStart.class);
-                startActivity(intent);
-            }
+        btn_back.setOnClickListener(v -> {
+            Intent intent = new Intent(memoryLoad.this, memoryStart.class);
+            startActivity(intent);
         });
 
         Cursor c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE ispassed = 2");
@@ -84,44 +78,37 @@ class MyAdapterForLoadList extends MyAdapterForList {
         final int fangge_number;
         fangge_number = fangge_item.id;
         fangge_id.setText(""+fangge_number);
-        fangge_infor.setText(fangge_item.infor);
+        fangge_infor.setText(fangge_item.info);
         fangge_content.setText(fangge_item.content.substring(0, 7) + "...");
         this.q = view.findViewById(R.id.q);
         this.day = view.findViewById(R.id.day);
         q.setText("");
         day.setText("");
 
-        btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View parentView = (View) v.getParent().getParent();
-                setAnimation(parentView, parent.getContext(), position);
-            }
+        btn_delete.setOnClickListener(v -> {
+            View parentView = (View) v.getParent().getParent();
+            setAnimation(parentView, parent.getContext(), position);
         });
 
 //        设置样式
         has_collect = (fangge_item.isCollect == 1);
         if(has_collect)btn_collect.setBackgroundResource(R.drawable.collec2);
         else btn_collect.setBackgroundResource(R.drawable.collec);
-        btn_collect.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("DefaultLocale")
-            @Override
-            public void onClick(View v) {
-                String sql;
-                if(has_collect) {
-                    v.setBackgroundResource(R.drawable.collec);
-                    sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
-                    MySQLHelper.getInstance().sqlOther(sql);
-                    Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    v.setBackgroundResource(R.drawable.collec2);
-                    sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
-                    MySQLHelper.getInstance().sqlOther(sql);
-                    Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
-                }
-                has_collect = !has_collect;
+        btn_collect.setOnClickListener(v -> {
+            String sql;
+            if(has_collect) {
+                v.setBackgroundResource(R.drawable.collec);
+                sql = String.format("update fangge set iscollect = 0 where id = %d", fangge_number);
+                MySQLHelper.getInstance().sqlOther(sql);
+                Toast.makeText(myList, "方歌取消收藏成功", Toast.LENGTH_SHORT).show();
             }
+            else{
+                v.setBackgroundResource(R.drawable.collec2);
+                sql = String.format("update fangge set iscollect = 1 where id = %d", fangge_number);
+                MySQLHelper.getInstance().sqlOther(sql);
+                Toast.makeText(myList, "方歌收藏成功", Toast.LENGTH_SHORT).show();
+            }
+            has_collect = !has_collect;
         });
 
         return view;

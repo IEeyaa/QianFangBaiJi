@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,33 +43,27 @@ public class deleteList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collectlist);
-        btn_back = findViewById(R.id.btn_back);
-        btn_search = findViewById(R.id.btn_search);
-        Edit = findViewById(R.id.Edit);
+        btn_back = findViewById(R.id.button_back);
+        btn_search = findViewById(R.id.search_button);
+        Edit = findViewById(R.id.search_box);
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(deleteList.this, selectmode.class);
-                startActivity(intent);
-            }
+        btn_back.setOnClickListener(v -> {
+            Intent intent = new Intent(deleteList.this, selectmode.class);
+            startActivity(intent);
         });
 
-        btn_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = Edit.getText().toString();
-                c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE (infor LIKE '%%%s%%' " +
-                        "or content LIKE '%%%s%%') and iscut = 1", str, str));
-                c.moveToFirst();
-                list.clear();
-                while (!c.isAfterLast()) {
-                    list.add(new Fangge(c));
-                    c.moveToNext();
-                }
-                c.close();
-                initView();
+        btn_search.setOnClickListener(v -> {
+            String str = Edit.getText().toString();
+            c = MySQLHelper.getInstance().sqlSelect(String.format("SELECT * FROM fangge WHERE (infor LIKE '%%%s%%' " +
+                    "or content LIKE '%%%s%%') and iscut = 1", str, str));
+            c.moveToFirst();
+            list.clear();
+            while (!c.isAfterLast()) {
+                list.add(new Fangge(c));
+                c.moveToNext();
             }
+            c.close();
+            initView();
         });
 
         c = MySQLHelper.getInstance().sqlSelect("SELECT * FROM fangge WHERE iscut = 1");
@@ -99,24 +92,18 @@ class MyAdapterForDeleteList extends MyAdapterForList {
         final int fangge_number;
         fangge_number = fangge_item.id;
         fangge_id.setText(""+fangge_number);
-        fangge_infor.setText(fangge_item.infor);
+        fangge_infor.setText(fangge_item.info);
         fangge_content.setText(fangge_item.content.substring(0, 7) + "...");
-        btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View parentView = (View) v.getParent().getParent();
-                setAnimation(parentView, parent.getContext(), position);
-            }
+        btn_delete.setOnClickListener(v -> {
+            View parentView = (View) v.getParent().getParent();
+            setAnimation(parentView, parent.getContext(), position);
         });
 
-        fangge_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(myList, readPage.class);
-                intent.putExtra("fangge_number", fangge_number);
-                intent.putExtra("from", "delete");
-                myList.startActivity(intent);
-            }
+        fangge_layout.setOnClickListener(v -> {
+            Intent intent = new Intent(myList, readPage.class);
+            intent.putExtra("fangge_number", fangge_number);
+            intent.putExtra("from", "delete");
+            myList.startActivity(intent);
         });
 
         return view;

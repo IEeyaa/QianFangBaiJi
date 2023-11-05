@@ -16,7 +16,7 @@
             android:background="@color/co_1"
             android:gravity="bottom|center"
             android:paddingBottom="15dp"
-            android:text="注册"
+            android:text="@string/sign_up"
             android:textColor="#FFFFFB"
             android:textSize="30sp" />
     </LinearLayout>
@@ -35,10 +35,11 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="请输入用户名"
+            android:hint="@string/enter_user_name"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/password"
@@ -48,10 +49,11 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="请输入密码"
+            android:hint="@string/enter_password"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/mail"
@@ -61,36 +63,40 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="请输入邮箱"
+            android:hint="@string/enter_email"
             android:inputType="textEmailAddress"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:autofillHints="" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
             <EditText
-                android:id="@+id/mailCheck"
+                android:id="@+id/verification_code"
                 android:layout_weight="0.7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:ems="10"
-                android:hint="请输入验证码"
+                android:hint="@string/enter_verification_code"
                 android:inputType="textPassword"
                 android:paddingLeft="20dp"
+                android:paddingRight="0dp"
                 android:layout_marginStart="30dp"
-                android:paddingStart="20dp" />
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
+                android:autofillHints="" />
             <Button
-                android:id="@+id/mailGet"
+                android:id="@+id/send_verification_code"
                 android:layout_weight="0.2"
                 android:layout_width="0dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_height="wrap_content"
                 android:background="@color/co_1"
-                android:text="获取"
+                android:text="@string/send_verification_code"
                 android:textColor="#FFFFFB"
                 android:textSize="18sp"
                 />
@@ -104,7 +110,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -112,7 +118,7 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:background="@color/co_1"
-            android:text="注 册"
+            android:text="@string/sign_up"
             android:textColor="#FFFFFB"
             android:textSize="18sp" />
 
@@ -123,7 +129,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="#FFFFFB"
-            android:text="返 回"
+            android:text="@string/back"
             android:textColor="@color/co_1"
             android:textStyle="bold"
             android:textSize="18sp" />

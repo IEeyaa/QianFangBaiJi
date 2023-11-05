@@ -6,7 +6,7 @@ public class Fangge {
     public int id;
     public String dynasty;
     public String table_name;
-    public String infor;
+    public String info;
     public String book;
     public String content;
     public int isCut;
@@ -15,11 +15,11 @@ public class Fangge {
     public int q = 0;
     public int day = 0;
 
-    public Fangge(int id, String dynasty, String table_name, String infor, String book, String content){
+    public Fangge(int id, String dynasty, String table_name, String info, String book, String content){
         this.id = id;
         this.dynasty = dynasty;
         this.table_name = table_name;
-        this.infor = infor;
+        this.info = info;
         this.book = book;
         this.content = content;
         this.isCut = 0;
@@ -33,7 +33,7 @@ public class Fangge {
         this.book = c.getString(c.getColumnIndex("book"));
         this.content = c.getString(c.getColumnIndex("content"));
         this.table_name = c.getString(c.getColumnIndex("table_name"));
-        this.infor = c.getString(c.getColumnIndex("infor"));
+        this.info = c.getString(c.getColumnIndex("infor"));
         this.isCut = c.getInt(c.getColumnIndex("iscut"));
         this.isCollect = c.getInt(c.getColumnIndex("iscollect"));
         this.isPassed = c.getInt(c.getColumnIndex("ispassed"));
@@ -45,7 +45,7 @@ public class Fangge {
         this.book = c.getString(c.getColumnIndex("book"));
         this.content = c.getString(c.getColumnIndex("content"));
         this.table_name = c.getString(c.getColumnIndex("table_name"));
-        this.infor = c.getString(c.getColumnIndex("infor"));
+        this.info = c.getString(c.getColumnIndex("infor"));
         this.isCut = c.getInt(c.getColumnIndex("iscut"));
         this.isCollect = c.getInt(c.getColumnIndex("iscollect"));
         this.q = q;

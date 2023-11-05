@@ -3,12 +3,10 @@ package com.example.qianfangbaiji.MemoryPage;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
@@ -20,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.qianfangbaiji.OtherClass.Fangge;
 import com.example.qianfangbaiji.OtherClass.Global;
 import com.example.qianfangbaiji.R;
-import com.example.qianfangbaiji.TestPage.testReport;
-import com.example.qianfangbaiji.TestPage.testStart;
 
 //根据数据库创建
 public class testPage extends AppCompatActivity {
@@ -36,7 +32,7 @@ public class testPage extends AppCompatActivity {
     SQLiteDatabase db1;
 
     private void init(){
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.button_back);
 
 
         answer[0] = findViewById(R.id.answer1);
@@ -48,8 +44,8 @@ public class testPage extends AppCompatActivity {
         fangge_id = findViewById(R.id.fangge_id);
         fangge_name = findViewById(R.id.fangge_name);
         fangge_infor = findViewById(R.id.fangge_infor);
-        fangge_from = findViewById(R.id.fangge_from);
-        fangge_content = findViewById(R.id.fangge_content);
+        fangge_from = findViewById(R.id.fang_ge_source);
+        fangge_content = findViewById(R.id.fang_ge_content);
     }
 
     @SuppressLint("DefaultLocale")
@@ -67,13 +63,10 @@ public class testPage extends AppCompatActivity {
         setContentView(R.layout.testpage);
         init();
         // 返回上一页
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.LazyStore(now);
-                Intent intent = new Intent(testPage.this, memoryStart.class);
-                startActivity(intent);
-            }
+        btn_back.setOnClickListener(v -> {
+            Global.LazyStore(now);
+            Intent intent = new Intent(testPage.this, memoryStart.class);
+            startActivity(intent);
         });
 
         //  生成答案
@@ -82,87 +75,81 @@ public class testPage extends AppCompatActivity {
 
         for(int i=0; i<Global.answer_number;i++){
             if(i != right_answer){
-                answer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(test_q_add > -1){
-                            test_q_add -= 1;
-                        }
-                        float originalX = v.getX();
-                        float originalY = v.getY();
-                        Animation shake = new TranslateAnimation(0, 10, 0, 0);
-                        shake.setDuration(500);
-                        shake.setInterpolator(new CycleInterpolator(5));
-                        v.startAnimation(shake);
-                        v.setX(originalX);
-                        v.setY(originalY);
+                answer[i].setOnClickListener(v -> {
+                    if(test_q_add > -1){
+                        test_q_add -= 1;
                     }
+                    float originalX = v.getX();
+                    float originalY = v.getY();
+                    Animation shake = new TranslateAnimation(0, 10, 0, 0);
+                    shake.setDuration(500);
+                    shake.setInterpolator(new CycleInterpolator(5));
+                    v.startAnimation(shake);
+                    v.setX(originalX);
+                    v.setY(originalY);
                 });
             }
             else{
-                answer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(now < edge){
-                            q_number = 2 + test_q_add * 2;
-                        }
-                        else{
-                            q_number += test_q_add;
-                        }
-                        v.setBackgroundColor(Color.rgb(199, 230, 203));
-                        Intent intent;
-                        Global.now++;
-                        if(Global.stage == 0){
-                            if (now == edge - 1){
-                                Global.stage = 1;
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage.this, memoryPage.class);
-                            }
-                            else{
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage.this, testPage.class);
-                            }
-                        }
-                        else{
-                            if (now == max - 1){
-                                Global.now = edge;
-                                Global.stage = 3;
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage.this, testPage2B.class);
-                            }
-                            else{
-                                Global.fangge_info_array.get(now)[1] = q_number;
-                                Global.LazyStore(now);
-                                intent = new Intent(testPage.this, testPage.class);
-                            }
-                        }
-                        startActivity(intent);
+                answer[i].setOnClickListener(v -> {
+                    if(now < edge){
+                        q_number = 2 + test_q_add * 2;
                     }
+                    else{
+                        q_number += test_q_add;
+                    }
+                    v.setBackgroundColor(Color.rgb(199, 230, 203));
+                    Intent intent;
+                    Global.now++;
+                    if(Global.stage == 0){
+                        if (now == edge - 1){
+                            Global.stage = 1;
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage.this, memoryPage.class);
+                        }
+                        else{
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage.this, testPage.class);
+                        }
+                    }
+                    else{
+                        if (now == max - 1){
+                            Global.now = edge;
+                            Global.stage = 3;
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage.this, testPage2B.class);
+                        }
+                        else{
+                            Global.fangge_info_array.get(now)[1] = q_number;
+                            Global.LazyStore(now);
+                            intent = new Intent(testPage.this, testPage.class);
+                        }
+                    }
+                    startActivity(intent);
                 });
             }
         }
         db1 = openOrCreateDatabase("database", Context.MODE_PRIVATE, null);
-        Cursor c = db1.rawQuery(String.format("SELECT * FROM %s WHERE id = %d", "fangge", fangge_number), null);
-        c.moveToFirst();
-        Fangge fangge_item = new Fangge(c);
+        Cursor cursor = db1.rawQuery(String.format("SELECT * FROM %s WHERE id = %d", "fangge", fangge_number), null);
+        cursor.moveToFirst();
+        Fangge fangge_item = new Fangge(cursor);
 
         //        生成干扰项 4类问题
         //        fangge_name
         if (question == 0){
             String hint = "____?____";
             fangge_name.setText(hint);
-            c = db1.rawQuery(String.format("SELECT * FROM %s WHERE infor != '%s' ORDER BY RANDOM()", "fangge", fangge_item.infor), null);
-            c.moveToFirst();
+            cursor = db1.rawQuery(String.format("SELECT * FROM %s WHERE infor != '%s' ORDER BY RANDOM()", "fangge", fangge_item.info), null);
+            cursor.moveToFirst();
             for(int i=0;i<Global.answer_number;i++){
                 if(i == right_answer){
-                    answer[i].setText(fangge_item.infor);
+                    answer[i].setText(fangge_item.info);
                 }
                 else{
-                    answer[i].setText(c.getString(c.getColumnIndex("infor")));
-                    c.moveToNext();
+                    answer[i].setText(cursor.getString(cursor.getColumnIndex("infor")));
+                    cursor.moveToNext();
                 }
             }
             fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
@@ -173,19 +160,19 @@ public class testPage extends AppCompatActivity {
         else if (question == 1){
             String hint = "______?______";
             fangge_from.setText(hint);
-            c = db1.rawQuery(String.format("SELECT * FROM %s WHERE book != '%s' ORDER BY RANDOM()", "fangge", fangge_item.book), null);
-            c.moveToFirst();
+            cursor = db1.rawQuery(String.format("SELECT * FROM %s WHERE book != '%s' ORDER BY RANDOM()", "fangge", fangge_item.book), null);
+            cursor.moveToFirst();
             for(int i=0;i<Global.answer_number;i++){
                 if(i == right_answer){
                     answer[i].setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
                 }
                 else{
-                    answer[i].setText(String.format("%s·%s", c.getString(c.getColumnIndex("dynasty")),
-                            c.getString(c.getColumnIndex("book"))));
-                    c.moveToNext();
+                    answer[i].setText(String.format("%s·%s", cursor.getString(cursor.getColumnIndex("dynasty")),
+                            cursor.getString(cursor.getColumnIndex("book"))));
+                    cursor.moveToNext();
                 }
             }
-            fangge_name.setText(fangge_item.infor);
+            fangge_name.setText(fangge_item.info);
             fangge_content.setText(fangge_item.content);
             fangge_infor.setText(String.format("治法：%s",fangge_item.table_name));
         }
@@ -202,43 +189,43 @@ public class testPage extends AppCompatActivity {
                 answer_word = fangge_item.content.substring(cut_line*17, (cut_line+1)*17);
             }
             String replace = fangge_item.content.replace(answer_word, hint);
-            c = db1.rawQuery(String.format("SELECT * FROM %s WHERE id != %d ORDER BY RANDOM()", "fangge", fangge_number), null);
-            c.moveToFirst();
+            cursor = db1.rawQuery(String.format("SELECT * FROM %s WHERE id != %d ORDER BY RANDOM()", "fangge", fangge_number), null);
+            cursor.moveToFirst();
             for(int i=0;i<Global.answer_number;i++){
                 if(i == right_answer){
                     answer[i].setText(answer_word);
                 }
                 else{
-                    int temp_line_number = (c.getString(c.getColumnIndex("content")).length() + 1) / 17;
+                    int temp_line_number = (cursor.getString(cursor.getColumnIndex("content")).length() + 1) / 17;
                     int temp_cut_line = (int) (Math.random() * temp_line_number);
-                    answer[i].setText(c.getString(c.getColumnIndex("content")).substring(temp_cut_line*17, (temp_cut_line+1)*17-1));
-                    c.moveToNext();
+                    answer[i].setText(cursor.getString(cursor.getColumnIndex("content")).substring(temp_cut_line*17, (temp_cut_line+1)*17-1));
+                    cursor.moveToNext();
                 }
             }
-            fangge_name.setText(fangge_item.infor);
+            fangge_name.setText(fangge_item.info);
             fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
             fangge_content.setText(replace);
             fangge_infor.setText(String.format("治法：%s",fangge_item.table_name));
         }
         else{
             String hint = "____?____";
-            c = db1.rawQuery(String.format("SELECT * FROM %s WHERE table_name != '%s' ORDER BY RANDOM()", "fangge", fangge_item.table_name), null);
-            c.moveToFirst();
+            cursor = db1.rawQuery(String.format("SELECT * FROM %s WHERE table_name != '%s' ORDER BY RANDOM()", "fangge", fangge_item.table_name), null);
+            cursor.moveToFirst();
             for(int i=0;i<Global.answer_number;i++){
                 if(i == right_answer){
                     answer[i].setText(fangge_item.table_name);
                 }
                 else{
-                    answer[i].setText(c.getString(c.getColumnIndex("table_name")));
-                    c.moveToNext();
+                    answer[i].setText(cursor.getString(cursor.getColumnIndex("table_name")));
+                    cursor.moveToNext();
                 }
             }
-            fangge_name.setText(fangge_item.infor);
+            fangge_name.setText(fangge_item.info);
             fangge_from.setText(String.format("%s·%s", fangge_item.dynasty, fangge_item.book));
             fangge_content.setText(fangge_item.content);
             fangge_infor.setText(String.format("治法：%s", hint));
         }
-        c.close();
+        cursor.close();
         //        展示
         // 获取全局持久变量
         int newDailyNumber;

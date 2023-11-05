@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="题目："
+            android:text="@string/title"
             android:textSize="20sp"
             android:layout_marginStart="20dp" />
         <EditText
@@ -55,13 +55,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cardTitleHint"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:autofillHints="" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="内容1"
+            android:text="@string/card_content_1"
             android:textSize="20sp"
             android:layout_marginStart="20dp" />
         <EditText
@@ -70,14 +71,15 @@
             android:layout_marginRight="20dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="输入内容1"
-            android:inputType="textMultiLine" />
+            android:hint="@string/input_content_1"
+            android:inputType="textMultiLine"
+            android:autofillHints="" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="内容2："
+            android:text="@string/card_content_2"
             android:textSize="20sp"
             android:layout_marginStart="20dp" />
         <EditText
@@ -86,30 +88,32 @@
             android:layout_marginRight="20dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="输入内容2"
-            android:inputType="textMultiLine" />
+            android:hint="@string/input_content_2"
+            android:inputType="textMultiLine"
+            android:autofillHints="" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="内容3："
+            android:text="@string/card_content_3"
             android:textSize="20sp"
-            />
+            android:layout_marginStart="20dp" />
         <EditText
             android:id="@+id/hint3"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="输入内容3"
-            android:inputType="textMultiLine" />
+            android:hint="@string/input_content_3"
+            android:inputType="textMultiLine"
+            android:autofillHints="" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="内容4："
+            android:text="@string/card_content_4"
             android:textSize="20sp"
             android:layout_marginStart="20dp" />
         <EditText
@@ -118,8 +122,9 @@
             android:layout_marginRight="20dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="输入内容4"
-            android:inputType="textMultiLine" />
+            android:hint="@string/input_content_4"
+            android:inputType="textMultiLine"
+            android:autofillHints="" />
     </LinearLayout>
 
     <RelativeLayout

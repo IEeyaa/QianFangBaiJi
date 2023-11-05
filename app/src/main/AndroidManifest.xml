@@ -11,18 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DailyPage.daily"></activity>
-        <activity android:name=".StudyPage.readList"></activity>
-        <activity android:name=".StudyPage.readPage"></activity>
-        <activity android:name=".StudyPage.selectmode"></activity>
-        <activity android:name=".StudyPage.collectList"></activity>
-        <activity android:name=".StudyPage.deleteList"></activity>
+        <activity android:name=".DailyPage.daily"/>
+        <activity android:name=".StudyPage.readList"/>
+        <activity android:name=".StudyPage.readPage"/>
+        <activity android:name=".StudyPage.selectmode"/>
+        <activity android:name=".StudyPage.collectList"/>
+        <activity android:name=".StudyPage.deleteList"/>
         <activity android:name=".MemoryPage.memoryPage" />
         <activity android:name=".MemoryPage.memoryStart" />
         <activity android:name=".MemoryPage.memoryReport" />
@@ -36,9 +37,9 @@
         <activity android:name=".TestPage.testStart" />
         <activity android:name=".TestPage.testReport" />
         <activity android:name=".MemoryPage.memorySelect" />
-        <activity android:name=".LoginPage.login" />
-        <activity android:name=".LoginPage.register" />
-        <activity android:name=".LoginPage.refind" />
+        <activity android:name=".LoginPage.Login" />
+        <activity android:name=".LoginPage.Register" />
+        <activity android:name=".LoginPage.RetrievePassword" />
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/test"
+            android:id="@+id/choose_mode"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:layout_centerInParent="true"

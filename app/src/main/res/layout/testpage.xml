@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_back"
+            android:id="@+id/button_back"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
@@ -92,7 +92,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
-                android:id="@+id/fangge_from"
+                android:id="@+id/fang_ge_source"
                 android:text="汉·伤寒论"
                 android:textSize="20sp"
                 />
@@ -104,7 +104,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/black"
-                android:id="@+id/fangge_content"
+                android:id="@+id/fang_ge_content"
                 android:lineSpacingExtra="20dp"
                 android:lineSpacingMultiplier="1.2"
                 android:text="蚖斑水蛭及虻虫，乌头附子配天雄；\n

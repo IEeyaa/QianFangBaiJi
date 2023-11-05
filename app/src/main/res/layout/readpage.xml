@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_back"
+            android:id="@+id/button_back"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
@@ -21,23 +21,24 @@
             android:layout_marginStart="10dp" />
         <EditText
             android:layout_height="wrap_content"
-            android:id="@+id/Edit"
+            android:id="@+id/search_box"
             android:layout_centerInParent="true"
             android:layout_width="250dp"
             android:hint="@string/fangge_hint"
             android:textColorHint="#95A1AA"
-            android:inputType="number" />
+            android:inputType="number"
+            android:autofillHints="" />
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:rotation="90"
-            android:layout_toRightOf="@id/Edit"
+            android:layout_toRightOf="@id/search_box"
             android:layout_centerInParent="true"
             android:layout_marginLeft="5dp"
-            android:id="@+id/btn_search"
+            android:id="@+id/search_button"
             android:alpha="0.5"
             android:background="@drawable/search1"
-            android:layout_toEndOf="@id/Edit"
+            android:layout_toEndOf="@id/search_box"
             android:layout_marginStart="5dp" />
         <View
             android:layout_width="fill_parent"
@@ -63,7 +64,7 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/grey"
             android:id="@+id/fangge_id"
-            android:text="方歌：104"
+            android:text="@string/test_fill_fangge_id"
             android:textSize="20sp"
             android:layout_marginStart="10dp" />
         <TextView
@@ -76,7 +77,7 @@
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:id="@+id/fangge_name"
-            android:text="麻黄汤"
+            android:text="@string/test_fill_fangge_name"
             android:textSize="25sp" />
 
         <TextView
@@ -88,8 +89,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:textColor="@color/black"
-            android:id="@+id/fangge_from"
-            android:text="汉·伤寒论"
+            android:id="@+id/fang_ge_source"
+            android:text="@string/test_fill_fagge_resource"
             android:textSize="20sp"
             />
 
@@ -100,10 +101,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:textColor="@color/black"
-            android:id="@+id/fangge_content"
+            android:id="@+id/fang_ge_content"
             android:lineSpacingExtra="20dp"
             android:lineSpacingMultiplier="1.2"
-            android:text="桑菊饮中桔杏翘，芦根甘草薄荷饶；\n清疏肺卫轻宣剂，风温咳嗽服之消。"
+            android:text="@string/test_fill_fangge_content"
             android:textSize="16sp"
         />
 
@@ -111,15 +112,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey"
-            android:gravity="right"
-            android:layout_gravity="right"
+            android:gravity="end"
+            android:layout_gravity="end"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:text="功效：辛温解表"
+            android:layout_marginBottom="20dp"
+            android:text="@string/test_fill_fangge_info"
             android:id="@+id/fangge_infor"
             android:textSize="15sp"
-             />
+            android:layout_marginEnd="50dp" />
 
     </LinearLayout>
 

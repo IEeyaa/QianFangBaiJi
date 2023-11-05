@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/grey"
-                android:id="@+id/fangge_content"
+                android:id="@+id/fang_ge_content"
                 android:textSize="15sp"
  />
         </LinearLayout>
